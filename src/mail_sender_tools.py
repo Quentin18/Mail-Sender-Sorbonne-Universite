@@ -12,7 +12,7 @@ from email import encoders
 
 def import_config():
     """Importe les configurations"""
-    f = open("config.txt", "r")
+    f = open("data/config.txt", "r")
     lines = f.readlines()
     list_email_user = [i.strip("\n") for i in lines[0].split(";")]
     list_email_send = [i.strip("\n") for i in lines[1].split(";")]
@@ -30,7 +30,7 @@ def clear_file(file):
 
 def get_attachment():
     """Récupère les pièces jointes"""
-    f = open("attachment.txt", "r")
+    f = open("data/attachment.txt", "r")
     path = f.read()
     filename = path.split("/")[-1]
     f.close()
@@ -39,7 +39,7 @@ def get_attachment():
 
 def get_signature():
     """Récupère la signature"""
-    f = open("signature.html", "r")
+    f = open("data/signature.html", "r")
     signature = f.read().strip("\n")
     f.close()
     return signature

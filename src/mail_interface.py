@@ -7,7 +7,7 @@ import tkinter as tk
 import tkinter.ttk as ttk
 from tkinter.filedialog import askopenfilename
 from tkinter.messagebox import showinfo, showerror
-from mail_sender_tools import send_mail
+from src.mail_sender_tools import send_mail
 
 
 class MailSenderInterface:
@@ -94,7 +94,7 @@ class MailSenderInterface:
         """Ajoute une pièce jointe"""
         filename = askopenfilename(title="Ouvrir le fichier")
         if filename:
-            f = open("attachment.txt", "w")
+            f = open("data/attachment.txt", "w")
             f.write(filename)
             f.close()
             self.maj_frame_attachment(filename)
