@@ -40,7 +40,7 @@ class MailSenderInterface:
                                              values=list_email_send)
         self.label_email_send.grid(row=1, column=0, padx=10, pady=5)
         self.entry_email_send.grid(row=1, column=1, padx=10, pady=5)
-        self.label_email_cc = ttk.Label(self.frame, text="CC")
+        self.label_email_cc = ttk.Label(self.frame, text="Cc")
         self.entry_email_cc = ttk.Combobox(self.frame, width=50,
                                            values=list_email_cc)
         self.label_email_cc.grid(row=2, column=0, padx=10, pady=5)
@@ -98,7 +98,7 @@ class MailSenderInterface:
             f = open("data/attachment.txt", "w")
             f.write(filename)
             f.close()
-            self.maj_frame_attachment(filename)
+            self.maj_frame_attachment(filename.split("/")[-1])
 
     def maj_frame_attachment(self, filename):
         """Met à jour le frame des pièces jointes"""
