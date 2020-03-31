@@ -5,7 +5,7 @@ Quentin Deschamps, 2020
 import tkinter as tk
 from src.login_interface import LoginInterface
 from src.mail_interface import MailSenderInterface
-from src.mail_sender_tools import import_config, clear_file
+from src.mail_sender_tools import import_config
 
 
 def main():
@@ -20,8 +20,6 @@ def main():
                             login_interface.num_etudiant,
                             login_interface.password)
         window.mainloop()
-        # Vide le fichier des pièces jointes
-        clear_file("data/attachment.txt")
 
 
 if __name__ == "__main__":

@@ -34,15 +34,6 @@ def clear_file(file):
     f.close()
 
 
-def get_attachment():
-    """Récupère les pièces jointes"""
-    f = open("data/attachment.txt", "r")
-    path = f.read()
-    filename = path.split("/")[-1]
-    f.close()
-    return path, filename
-
-
 def get_signature():
     """Récupère la signature"""
     f = open("data/signature.html", "r")
@@ -51,8 +42,8 @@ def get_signature():
     return signature
 
 
-def send_mail(email_user, email_send, email_cc,
-              subject, body, num_etudiant, password,
+def send_mail(email_user, email_send, email_cc, subject,
+              body, list_attachment, num_etudiant, password,
               server="smtp.upmc.fr", port=587):
     """Envoie le mail"""
     msg = MIMEMultipart()
@@ -66,13 +57,12 @@ def send_mail(email_user, email_send, email_cc,
     signature = get_signature()
     msg.attach(MIMEText(signature, 'html'))
 
-    path, filename = get_attachment()
-    if path != "":
+    for path in list_attachment:
         attachment = open(path, 'rb')
-
         part = MIMEBase('application', 'octet-stream')
         part.set_payload((attachment).read())
         encoders.encode_base64(part)
+        filename = path.split("/")[-1]
         part.add_header('Content-Disposition',
                         "attachment; filename= " + filename)
 

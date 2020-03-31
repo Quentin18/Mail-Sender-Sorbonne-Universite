@@ -8,6 +8,7 @@ import tkinter.ttk as ttk
 from tkinter.filedialog import askopenfilename
 from tkinter.messagebox import showinfo, showerror
 from src.mail_sender_tools import send_mail
+from src.attachment import Attachment
 
 
 class MailSenderInterface:
@@ -57,13 +58,7 @@ class MailSenderInterface:
         self.entry_body.grid(row=1, padx=10, pady=5)
 
         # Pièces jointes
-        self.button_attachment = ttk.Button(self.fenetre,
-                                            text="Joindre un fichier",
-                                            command=self.open_file)
-        self.button_attachment.grid(row=2)
-
-        self.frame_attachment = ttk.Frame(self.fenetre)
-        self.frame_attachment.grid(row=3)
+        self.attachment = Attachment(self.fenetre)
 
         # Bouton d'envoi
         self.button_send = ttk.Button(self.fenetre, text="Envoyer",
@@ -82,28 +77,13 @@ class MailSenderInterface:
         email_cc = self.entry_email_cc.get()
         subject = self.entry_subject.get()
         body = self.entry_body.get("1.0", "end")
+        list_attachment = self.attachment.list_attachment
         if email_user and email_send and subject:
             if not email_cc:
                 email_cc = ""
             send_mail(email_user, email_send, email_cc,
-                      subject, body, self.num_etudiant, self.password)
+                      subject, body, list_attachment,
+                      self.num_etudiant, self.password)
             showinfo("Envoi réussi", "Le mail a été envoyé !")
         else:
             showerror("Erreur", "Merci de remplir tous les champs.")
-
-    def open_file(self):
-        """Ajoute une pièce jointe"""
-        filename = askopenfilename(title="Ouvrir le fichier")
-        if filename:
-            f = open("data/attachment.txt", "w")
-            f.write(filename)
-            f.close()
-            self.maj_frame_attachment(filename.split("/")[-1])
-
-    def maj_frame_attachment(self, filename):
-        """Met à jour le frame des pièces jointes"""
-        self.frame_attachment.destroy()
-        self.frame_attachment = ttk.Frame(self.fenetre)
-        self.label_attachment = ttk.Label(self.frame_attachment, text=filename)
-        self.label_attachment.pack()
-        self.frame_attachment.grid(row=3)
