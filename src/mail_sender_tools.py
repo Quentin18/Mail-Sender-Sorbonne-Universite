@@ -10,14 +10,20 @@ from email.mime.base import MIMEBase
 from email import encoders
 
 
+def list_file(file):
+    """Retourne la liste des éléments d'un fichier"""
+    f = open(file, "r")
+    lines = f.readlines()
+    ret_list = [i.strip("\n") for i in lines]
+    f.close()
+    return ret_list
+
+
 def import_config():
     """Importe les configurations"""
-    f = open("data/config.txt", "r")
-    lines = f.readlines()
-    list_email_user = [i.strip("\n") for i in lines[0].split(";")]
-    list_email_send = [i.strip("\n") for i in lines[1].split(";")]
-    list_subject = [i.strip("\n") for i in lines[2].split(";")]
-    f.close()
+    list_email_user = list_file("data/user.txt")
+    list_email_send = list_file("data/contacts.txt")
+    list_subject = list_file("data/subjects.txt")
     return list_email_user, list_email_send, list_subject
 
 
