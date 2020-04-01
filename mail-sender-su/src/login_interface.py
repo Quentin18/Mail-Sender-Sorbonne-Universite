@@ -38,7 +38,7 @@ class LoginInterface():
 
         self.frame_login.grid(column=0, row=0, padx=5, pady=5)
 
-        self.logo = tk.PhotoImage(file="image/su.png")
+        self.logo = tk.PhotoImage(file="mail-sender-su/image/su.png")
         self.label_logo = tk.Label(self.login_window, image=self.logo)
         self.label_logo.grid(column=1, row=0, padx=5, pady=5)
 

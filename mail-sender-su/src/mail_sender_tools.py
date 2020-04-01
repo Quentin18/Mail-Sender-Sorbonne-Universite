@@ -21,9 +21,9 @@ def list_file(file):
 
 def import_config():
     """Importe les configurations"""
-    list_email_user = list_file("data/user.txt")
-    list_email_send = list_file("data/contacts.txt")
-    list_subject = list_file("data/subjects.txt")
+    list_email_user = list_file("mail-sender-su/data/user.txt")
+    list_email_send = list_file("mail-sender-su/data/contacts.txt")
+    list_subject = list_file("mail-sender-su/data/subjects.txt")
     return list_email_user, list_email_send, list_subject
 
 
@@ -36,7 +36,7 @@ def clear_file(file):
 
 def get_signature():
     """Récupère la signature"""
-    f = open("data/signature.html", "r")
+    f = open("mail-sender-su/data/signature.html", "r")
     signature = f.read().strip("\n")
     f.close()
     return signature
