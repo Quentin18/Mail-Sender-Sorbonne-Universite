@@ -23,31 +23,25 @@ class Attachment:
                                         command=self.delete_file)
         self.button_delete.grid(row=0, column=1)
         self.button_delete.config(state=tk.DISABLED)
-        self.button_frame.grid(row=2)
-        self.frame_attachment = ttk.Frame(self.fenetre)
-        self.frame_attachment.grid(row=3)
+        self.button_frame.grid(row=2, padx=5, pady=5)
+        self.listbox_attachment = tk.Listbox(self.fenetre, height=4, width=50)
+        self.listbox_attachment.grid(row=3)
 
     def open_file(self):
         """Ajoute une pièce jointe"""
         filename = askopenfilename(title="Ouvrir le fichier")
         if filename:
             self.list_attachment.append(filename)
-            self.maj_frame_attachment()
+            self.listbox_attachment.insert(tk.END, filename.split("/")[-1])
+            self.button_delete.config(state=tk.NORMAL)
 
     def delete_file(self):
         """Supprime une pièce jointe"""
-        if self.list_attachment != []:
-            self.list_attachment.pop()
-            self.maj_frame_attachment()
+        filename = self.listbox_attachment.get(tk.ACTIVE)
+        # if not filename:
+        #     filename = self.list_attachment[-1]
+        index = self.listbox_attachment.get(0, tk.END).index(filename)
+        self.list_attachment.pop(index)
+        self.listbox_attachment.delete(index)
         if self.list_attachment == []:
             self.button_delete.config(state=tk.DISABLED)
-
-    def maj_frame_attachment(self):
-        """Met à jour le frame des pièces jointes"""
-        self.frame_attachment.destroy()
-        self.frame_attachment = ttk.Frame(self.fenetre)
-        for filename in self.list_attachment:
-            ttk.Label(self.frame_attachment,
-                      text=filename.split("/")[-1]).pack()
-        self.frame_attachment.grid(row=3)
-        self.button_delete.config(state=tk.NORMAL)
