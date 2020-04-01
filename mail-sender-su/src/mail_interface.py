@@ -8,6 +8,7 @@ import tkinter.ttk as ttk
 from tkinter.messagebox import showinfo, showerror
 from src.mail_sender_tools import send_mail
 from src.attachment import Attachment
+from src.style import set_style
 
 
 class MailSenderInterface:
@@ -23,9 +24,7 @@ class MailSenderInterface:
         self.fenetre.resizable(width=False, height=False)
 
         # Style
-        self.style = ttk.Style()
-        if "clam" in self.style.theme_names():
-            self.style.theme_use('clam')
+        set_style(self.fenetre, "#263068", "#ffffff", "#ffffff")
 
         # Partie du haut
         self.frame = ttk.Frame(self.fenetre)
@@ -50,24 +49,22 @@ class MailSenderInterface:
                                           values=list_subject)
         self.label_subject.grid(row=3, column=0, padx=10, pady=5)
         self.entry_subject.grid(row=3, column=1, padx=10, pady=5)
-        self.frame.grid(row=0)
+        self.frame.grid(row=0, padx=10, pady=10)
 
         # Corps du texte
-        self.entry_body = tk.Text(self.fenetre, height=10, width=100)
-        self.entry_body.grid(row=1, padx=10, pady=5)
+        self.entry_body = tk.Text(self.fenetre, height=10, width=60)
+        self.entry_body.grid(row=1, padx=10, pady=10)
+
+        # Boutons
+        self.button_frame = ttk.Frame(self.fenetre)
+        self.button_send = ttk.Button(self.button_frame, text="Envoyer",
+                                      command=self.send_message)
+        self.button_send.grid(row=0, column=0, padx=5, pady=5)
 
         # Pièces jointes
-        self.attachment = Attachment(self.fenetre)
+        self.attachment = Attachment(self.fenetre, self.button_frame)
 
-        # Bouton d'envoi
-        self.button_send = ttk.Button(self.fenetre, text="Envoyer",
-                                      command=self.send_message)
-        self.button_send.grid(row=4, padx=10, pady=5)
-
-        # Auteur
-        self.label_author = ttk.Label(self.fenetre,
-                                      text="Quentin Deschamps, 2020")
-        self.label_author.grid(row=5, padx=10, pady=5)
+        self.button_frame.grid(row=3, padx=10, pady=10)
 
     def send_message(self):
         """Lance l'envoi du mail"""

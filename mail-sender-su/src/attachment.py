@@ -10,22 +10,25 @@ from tkinter.filedialog import askopenfilename
 
 class Attachment:
     """Gestion des pièces jointes"""
-    def __init__(self, fenetre):
+    def __init__(self, fenetre, button_frame):
         self.list_attachment = []
         self.fenetre = fenetre
-        self.button_frame = ttk.Frame(self.fenetre)
+        self.button_frame = button_frame
+
+        # Listbox
+        self.listbox_attachment = tk.Listbox(self.fenetre, height=2, width=60)
+        self.listbox_attachment.grid(row=2, padx=10, pady=10)
+
+        # Button
         self.button_attachment = ttk.Button(self.button_frame,
                                             text="Joindre un fichier",
                                             command=self.open_file)
-        self.button_attachment.grid(row=0, column=0)
+        self.button_attachment.grid(row=0, column=1, padx=5, pady=5)
         self.button_delete = ttk.Button(self.button_frame,
                                         text="Supprimer",
                                         command=self.delete_file)
-        self.button_delete.grid(row=0, column=1)
+        self.button_delete.grid(row=0, column=2, padx=5, pady=5)
         self.button_delete.config(state=tk.DISABLED)
-        self.button_frame.grid(row=2, padx=5, pady=5)
-        self.listbox_attachment = tk.Listbox(self.fenetre, height=4, width=50)
-        self.listbox_attachment.grid(row=3)
 
     def open_file(self):
         """Ajoute une pièce jointe"""
