@@ -22,6 +22,7 @@ class Style:
                              foreground=fg_button,
                              background=bg_button,
                              font=font_button)
+        self.style.map('TButton', foreground=[('disabled', bg_button)])
         # Label style
         self.style.configure('TLabel', foreground=fg_label, background=bgcolor)
         # Frame style

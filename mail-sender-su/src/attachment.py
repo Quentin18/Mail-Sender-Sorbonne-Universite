@@ -33,10 +33,9 @@ class Attachment:
     def open_files(self):
         """Ajoute des pièces jointes"""
         filenames = askopenfilenames(title="Ouvrir les fichiers")
-        if filenames != []:
-            for f in filenames:
-                self.list_attachment.append(f)
-                self.listbox_attachment.insert(tk.END, f.split("/")[-1])
+        for f in filenames:
+            self.list_attachment.append(f)
+            self.listbox_attachment.insert(tk.END, f.split("/")[-1])
             self.button_delete.config(state=tk.NORMAL)
 
     def delete_file(self):
