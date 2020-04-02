@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="mail-sender-su",
+    name="mailSenderSU",
     version="0.0.1",
     author="Quentin Deschamps",
     author_email="quentindeschamps18@gmail.com",
