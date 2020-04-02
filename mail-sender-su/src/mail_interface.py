@@ -7,7 +7,7 @@ import tkinter as tk
 import tkinter.ttk as ttk
 from src.mail_sender_tools import send_mail
 from src.attachment import Attachment
-from src.style import set_style
+from src.style import Style
 from src.message import show_send_mail, show_send_mail_error
 
 
@@ -24,7 +24,7 @@ class MailSenderInterface:
         self.fenetre.resizable(width=False, height=False)
 
         # Style
-        set_style(self.fenetre)
+        self.style = Style(self.fenetre)
 
         # Partie du haut
         self.frame = ttk.Frame(self.fenetre)

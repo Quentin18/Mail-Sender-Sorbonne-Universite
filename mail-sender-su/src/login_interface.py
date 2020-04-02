@@ -6,7 +6,7 @@ Quentin Deschamps, 2020
 import smtplib
 import tkinter as tk
 import tkinter.ttk as ttk
-from src.style import set_style
+from src.style import Style
 from src.message import show_login_error
 
 
@@ -22,7 +22,7 @@ class LoginInterface():
         self.login_window.resizable(width=False, height=False)
 
         # Style
-        set_style(self.login_window)
+        self.style = Style(self.login_window)
 
         # Gauche
         self.frame_left = ttk.Frame(self.login_window)
