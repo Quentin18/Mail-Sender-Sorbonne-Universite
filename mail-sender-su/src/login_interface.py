@@ -22,7 +22,7 @@ class LoginInterface():
         self.login_window.resizable(width=False, height=False)
 
         # Style
-        set_style(self.login_window, "#263068", "#ffffff", "#ffffff")
+        set_style(self.login_window)
 
         # Gauche
         self.frame_left = ttk.Frame(self.login_window)
