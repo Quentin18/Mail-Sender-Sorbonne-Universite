@@ -32,7 +32,12 @@ class Attachment:
 
     def open_files(self):
         """Ajoute des pièces jointes"""
-        filenames = askopenfilenames(title="Ouvrir les fichiers")
+        filenames = askopenfilenames(initialdir="~",
+                                     title="Ouvrir les fichiers",
+                                     filetypes=[('all files', '.*'),
+                                                ('pdf files', '.pdf'),
+                                                ('zip files', '.zip'),
+                                                ('png files', '.png')])
         for f in filenames:
             self.list_attachment.append(f)
             self.listbox_attachment.insert(tk.END, f.split("/")[-1])
