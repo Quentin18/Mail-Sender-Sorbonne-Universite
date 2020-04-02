@@ -6,8 +6,8 @@ Quentin Deschamps, 2020
 import smtplib
 import tkinter as tk
 import tkinter.ttk as ttk
-from src.style import Style
-from src.message import show_login_error
+from mailSenderSU.src.style import Style
+from mailSenderSU.src.message import show_login_error
 
 
 class LoginInterface():
@@ -45,7 +45,7 @@ class LoginInterface():
         self.frame_left.grid(row=0, column=0, padx=10, pady=10)
 
         # Droite
-        self.logo = tk.PhotoImage(file="mail-sender-su/image/su.png")
+        self.logo = tk.PhotoImage(file="mailSenderSU/image/su.png")
         self.label_logo = tk.Label(self.login_window, image=self.logo)
         self.label_logo.grid(row=0, column=1, padx=10, pady=10)
 

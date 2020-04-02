@@ -5,10 +5,10 @@ Quentin Deschamps, 2020
 """
 import tkinter as tk
 import tkinter.ttk as ttk
-from src.send import send_mail
-from src.attachment import Attachment
-from src.style import Style
-import src.message as Message
+from mailSenderSU.src.send import send_mail
+from mailSenderSU.src.attachment import Attachment
+from mailSenderSU.src.style import Style
+import mailSenderSU.src.message as Message
 
 
 class MailSenderInterface:

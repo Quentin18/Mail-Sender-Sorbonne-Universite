@@ -3,7 +3,7 @@ Mail sender Sorbonne Université
 Gestion des fichiers
 Quentin Deschamps, 2020
 """
-import src.message as Message
+import mailSenderSU.src.message as Message
 
 
 def list_file(file):
@@ -32,10 +32,10 @@ def add_file(file, data):
 class Files:
     """Gère les fichiers de données"""
     def __init__(self,
-                 file_user="mail-sender-su/data/user.txt",
-                 file_contacts="mail-sender-su/data/contacts.txt",
-                 file_subject="mail-sender-su/data/subjects.txt",
-                 file_signature="mail-sender-su/data/signature.html"):
+                 file_user="mailSenderSU/data/user.txt",
+                 file_contacts="mailSenderSU/data/contacts.txt",
+                 file_subject="mailSenderSU/data/subjects.txt",
+                 file_signature="mailSenderSU/data/signature.html"):
         self.file_user = file_user
         self.file_contacts = file_contacts
         self.file_subject = file_subject

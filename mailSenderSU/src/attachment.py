@@ -32,7 +32,7 @@ class Attachment:
 
     def open_files(self):
         """Ajoute des pièces jointes"""
-        filenames = askopenfilenames(initialdir="~",
+        filenames = askopenfilenames(initialdir=".",
                                      title="Ouvrir les fichiers",
                                      filetypes=[('all files', '.*'),
                                                 ('pdf files', '.pdf'),

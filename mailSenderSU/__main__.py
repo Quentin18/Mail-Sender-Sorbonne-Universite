@@ -3,9 +3,9 @@ Mail sender Sorbonne Université
 Quentin Deschamps, 2020
 """
 import tkinter as tk
-from src.login_interface import LoginInterface
-from src.mail_interface import MailSenderInterface
-from src.files import Files
+from mailSenderSU.src.login_interface import LoginInterface
+from mailSenderSU.src.mail_interface import MailSenderInterface
+from mailSenderSU.src.files import Files
 
 
 def main():
