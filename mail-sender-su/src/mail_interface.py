@@ -5,7 +5,7 @@ Quentin Deschamps, 2020
 """
 import tkinter as tk
 import tkinter.ttk as ttk
-from src.mail_sender_tools import send_mail, add_file
+from src.send import send_mail
 from src.attachment import Attachment
 from src.style import Style
 import src.message as Message
@@ -13,12 +13,10 @@ import src.message as Message
 
 class MailSenderInterface:
     """Interface du mail sender"""
-    def __init__(self, window, list_email_user, list_email_send,
-                 list_subject, num_etudiant, password):
+    def __init__(self, window, data, num_etudiant, password):
+        self.data = data
         self.num_etudiant = num_etudiant
         self.password = password
-        self.list_email_user = list_email_user
-        self.list_email_send = list_email_send
 
         # Fenêtre
         self.fenetre = window
@@ -32,23 +30,23 @@ class MailSenderInterface:
         self.frame = ttk.Frame(self.fenetre)
         self.label_email_user = ttk.Label(self.frame, text="De")
         self.entry_email_user = ttk.Combobox(self.frame, width=50,
-                                             values=list_email_user)
+                                             values=data.list_email_user)
         self.entry_email_user.current(0)
         self.label_email_user.grid(row=0, column=0, padx=10, pady=5)
         self.entry_email_user.grid(row=0, column=1, padx=10, pady=5)
         self.label_email_send = ttk.Label(self.frame, text="À")
         self.entry_email_send = ttk.Combobox(self.frame, width=50,
-                                             values=list_email_send)
+                                             values=data.list_email_send)
         self.label_email_send.grid(row=1, column=0, padx=10, pady=5)
         self.entry_email_send.grid(row=1, column=1, padx=10, pady=5)
         self.label_email_cc = ttk.Label(self.frame, text="Cc")
         self.entry_email_cc = ttk.Combobox(self.frame, width=50,
-                                           values=list_email_send)
+                                           values=data.list_email_send)
         self.label_email_cc.grid(row=2, column=0, padx=10, pady=5)
         self.entry_email_cc.grid(row=2, column=1, padx=10, pady=5)
         self.label_subject = ttk.Label(self.frame, text="Objet")
         self.entry_subject = ttk.Combobox(self.frame, width=50,
-                                          values=list_subject)
+                                          values=data.list_subject)
         self.label_subject.grid(row=3, column=0, padx=10, pady=5)
         self.entry_subject.grid(row=3, column=1, padx=10, pady=5)
         self.frame.grid(row=0, padx=10, pady=10)
@@ -68,21 +66,6 @@ class MailSenderInterface:
 
         self.button_frame.grid(row=3, padx=10, pady=10)
 
-    def maj_files(self, email_user, email_send, email_cc):
-        """Met à jour les fichiers de données"""
-        if email_user not in self.list_email_user:
-            if Message.show_new_user(email_user):
-                add_file("mail-sender-su/data/user.txt", email_user)
-                self.list_email_user.append(email_user)
-        if email_send not in self.list_email_send:
-            if Message.show_new_contact(email_send):
-                add_file("mail-sender-su/data/contacts.txt", email_send)
-                self.list_email_send.append(email_send)
-        if email_cc != "" and email_cc not in self.list_email_send:
-            if Message.show_new_contact(email_cc):
-                add_file("mail-sender-su/data/contacts.txt", email_cc)
-                self.list_email_user.append(email_cc)
-
     def send_message(self):
         """Lance l'envoi du mail"""
         email_user = self.entry_email_user.get()
@@ -96,8 +79,8 @@ class MailSenderInterface:
                 email_cc = ""
             send_mail(email_user, email_send, email_cc,
                       subject, body, list_attachment,
-                      self.num_etudiant, self.password)
+                      self.num_etudiant, self.password, self.data.signature)
             Message.show_send_mail()
-            self.maj_files(email_user, email_send, email_cc)
+            self.data.maj_files(email_user, email_send, email_cc)
         else:
             Message.show_send_mail_error()
