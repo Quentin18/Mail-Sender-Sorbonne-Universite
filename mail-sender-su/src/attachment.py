@@ -5,7 +5,7 @@ Quentin Deschamps, 2020
 """
 import tkinter as tk
 import tkinter.ttk as ttk
-from tkinter.filedialog import askopenfilename
+from tkinter.filedialog import askopenfilenames
 
 
 class Attachment:
@@ -22,7 +22,7 @@ class Attachment:
         # Button
         self.button_attachment = ttk.Button(self.button_frame,
                                             text="Joindre un fichier",
-                                            command=self.open_file)
+                                            command=self.open_files)
         self.button_attachment.grid(row=0, column=1, padx=5, pady=5)
         self.button_delete = ttk.Button(self.button_frame,
                                         text="Supprimer",
@@ -30,12 +30,13 @@ class Attachment:
         self.button_delete.grid(row=0, column=2, padx=5, pady=5)
         self.button_delete.config(state=tk.DISABLED)
 
-    def open_file(self):
-        """Ajoute une pièce jointe"""
-        filename = askopenfilename(title="Ouvrir le fichier")
-        if filename:
-            self.list_attachment.append(filename)
-            self.listbox_attachment.insert(tk.END, filename.split("/")[-1])
+    def open_files(self):
+        """Ajoute des pièces jointes"""
+        filenames = askopenfilenames(title="Ouvrir les fichiers")
+        if filenames != []:
+            for f in filenames:
+                self.list_attachment.append(f)
+                self.listbox_attachment.insert(tk.END, f.split("/")[-1])
             self.button_delete.config(state=tk.NORMAL)
 
     def delete_file(self):

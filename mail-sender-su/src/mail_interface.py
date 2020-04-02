@@ -5,7 +5,6 @@ Quentin Deschamps, 2020
 """
 import tkinter as tk
 import tkinter.ttk as ttk
-from tkinter.messagebox import showinfo, showerror
 from src.mail_sender_tools import send_mail
 from src.attachment import Attachment
 from src.style import set_style
