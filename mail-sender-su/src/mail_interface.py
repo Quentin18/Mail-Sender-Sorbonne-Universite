@@ -9,6 +9,7 @@ from tkinter.messagebox import showinfo, showerror
 from src.mail_sender_tools import send_mail
 from src.attachment import Attachment
 from src.style import set_style
+from src.message import show_send_mail, show_send_mail_error
 
 
 class MailSenderInterface:
@@ -80,6 +81,6 @@ class MailSenderInterface:
             send_mail(email_user, email_send, email_cc,
                       subject, body, list_attachment,
                       self.num_etudiant, self.password)
-            showinfo("Envoi réussi", "Le mail a été envoyé !")
+            show_send_mail()
         else:
-            showerror("Erreur", "Merci de remplir tous les champs.")
+            show_send_mail_error()

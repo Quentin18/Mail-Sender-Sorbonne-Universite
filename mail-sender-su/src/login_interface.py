@@ -6,8 +6,8 @@ Quentin Deschamps, 2020
 import smtplib
 import tkinter as tk
 import tkinter.ttk as ttk
-from tkinter.messagebox import showerror
 from src.style import set_style
+from src.message import show_login_error
 
 
 class LoginInterface():
@@ -59,7 +59,7 @@ class LoginInterface():
             server.login(num_etudiant, password)
             server.quit()
         except Exception:
-            showerror("Erreur", "La connexion a échoué. Veuillez réessayer.")
+            show_login_error()
         else:
             self.login = True
             self.num_etudiant = num_etudiant
