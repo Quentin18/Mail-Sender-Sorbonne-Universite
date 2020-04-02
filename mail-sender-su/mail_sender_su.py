@@ -15,7 +15,7 @@ def main():
     if login_interface.login:
         list_email_user, list_email_send, list_subject = import_config()
         window = tk.Tk()
-        MailSenderInterface(window, list_email_user, list_email_send,
+        MailSenderInterface(window, list_email_user,
                             list_email_send, list_subject,
                             login_interface.num_etudiant,
                             login_interface.password)

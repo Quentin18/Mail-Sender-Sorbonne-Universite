@@ -42,6 +42,13 @@ def get_signature():
     return signature
 
 
+def add_file(file, data):
+    """Ajoute une donnée à un fichier"""
+    f = open(file, "a")
+    f.write(f"{data}\n")
+    f.close()
+
+
 def send_mail(email_user, email_send, email_cc, subject,
               body, list_attachment, num_etudiant, password,
               server="smtp.upmc.fr", port=587):
