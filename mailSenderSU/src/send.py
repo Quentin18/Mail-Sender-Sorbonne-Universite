@@ -10,6 +10,13 @@ from email.mime.base import MIMEBase
 from email import encoders
 
 
+def get_name_from_email(email):
+    """Retourne le nom associé à une adresse mail"""
+    prenom = email.split(".")[0].capitalize()
+    nom = email.split(".")[1].capitalize()
+    return f"{prenom} {nom}"
+
+
 def list_email(email):
     """Retourne la liste des emails à partir d'une chaine de caractères"""
     liste = email.split(",")
@@ -22,7 +29,7 @@ def send_mail(email_user, email_send, email_cc, subject,
               signature, server="smtp.upmc.fr", port=587):
     """Envoie le mail"""
     msg = MIMEMultipart()
-    msg['From'] = email_user
+    msg['From'] = f"{get_name_from_email(email_user)} <{email_user}>"
     msg['To'] = email_send
     if email_cc != "":
         msg['Cc'] = email_cc
