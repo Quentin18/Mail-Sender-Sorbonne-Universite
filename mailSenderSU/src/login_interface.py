@@ -10,9 +10,9 @@ from mailSenderSU.src.style import Style
 from mailSenderSU.src.message import show_login_error
 
 
-class LoginInterface():
+class LoginInterface:
     """Interface de connexion au serveur"""
-    def __init__(self, window):
+    def __init__(self, window, path):
         self.login = False
         self.num_etudiant, self.password = "", ""
 
@@ -45,7 +45,7 @@ class LoginInterface():
         self.frame_left.grid(row=0, column=0, padx=10, pady=10)
 
         # Droite
-        self.logo = tk.PhotoImage(file="mailSenderSU/image/su.png")
+        self.logo = tk.PhotoImage(file="".join([path, "/image/su.png"]))
         self.label_logo = tk.Label(self.login_window, image=self.logo)
         self.label_logo.grid(row=0, column=1, padx=10, pady=10)
 

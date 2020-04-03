@@ -31,15 +31,11 @@ def add_file(file, data):
 
 class Files:
     """Gère les fichiers de données"""
-    def __init__(self,
-                 file_user="mailSenderSU/data/user.txt",
-                 file_contacts="mailSenderSU/data/contacts.txt",
-                 file_subject="mailSenderSU/data/subjects.txt",
-                 file_signature="mailSenderSU/data/signature.html"):
-        self.file_user = file_user
-        self.file_contacts = file_contacts
-        self.file_subject = file_subject
-        self.file_signature = file_signature
+    def __init__(self, path):
+        self.file_user = "".join([path, "/data/user.txt"])
+        self.file_contacts = "".join([path, "/data/contacts.txt"])
+        self.file_subject = "".join([path, "/data/subjects.txt"])
+        self.file_signature = "".join([path, "/data/signature.html"])
         self.list_email_user = list_file(self.file_user)
         self.list_email_send = list_file(self.file_contacts)
         self.list_subject = list_file(self.file_subject)
