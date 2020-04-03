@@ -8,6 +8,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
+import mailSenderSU.src.message as Message
 
 
 def get_name_from_email(email):
@@ -57,5 +58,10 @@ def send_mail(email_user, email_send, email_cc, subject,
     recipients = list_email(email_send)
     if email_cc != "":
         recipients += list_email(email_cc)
-    server.sendmail(email_user, recipients, text)
-    server.quit()
+    try:
+        server.sendmail(email_user, recipients, text)
+        server.quit()
+    except Exception:
+        Message.show_send_mail_error()
+        return False
+    return True

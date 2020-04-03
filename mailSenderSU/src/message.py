@@ -38,3 +38,7 @@ def show_new_user(mail):
 def show_new_contact(mail):
     return askyesno("Nouveau contact",
                     f"Ajouter {mail} à vos contacts ?")
+
+
+def show_send_mail_error():
+    return showerror("Erreur envoi", "L'envoi a échoué !")
