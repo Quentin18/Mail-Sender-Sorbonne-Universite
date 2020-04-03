@@ -11,7 +11,7 @@ class Style:
     def __init__(self, window, bgcolor='#263068', theme='clam',
                  fg_button='#e63228', bg_button='#ffffff',
                  fg_label='#ffffff',
-                 font_button=('calibri', 10, 'bold', 'underline')):
+                 font_button=('calibri', 10, 'bold')):
         self.window = window
         self.window.configure(bg=bgcolor)
         self.style = ttk.Style()
@@ -22,7 +22,6 @@ class Style:
                              foreground=fg_button,
                              background=bg_button,
                              font=font_button)
-        self.style.map('TButton', foreground=[('disabled', bg_button)])
         # Label style
         self.style.configure('TLabel', foreground=fg_label, background=bgcolor)
         # Frame style
