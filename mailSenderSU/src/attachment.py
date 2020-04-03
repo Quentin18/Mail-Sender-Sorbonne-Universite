@@ -46,8 +46,6 @@ class Attachment:
     def delete_file(self):
         """Supprime une pièce jointe"""
         filename = self.listbox_attachment.get(tk.ACTIVE)
-        # if not filename:
-        #     filename = self.list_attachment[-1]
         index = self.listbox_attachment.get(0, tk.END).index(filename)
         self.list_attachment.pop(index)
         self.listbox_attachment.delete(index)
