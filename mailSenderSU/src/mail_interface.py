@@ -66,15 +66,35 @@ class MailSenderInterface:
 
         self.button_frame.grid(row=3, padx=10, pady=10)
 
+    def check(self):
+        """Vérifie les adresses mails"""
+        email_user = self.entry_email_user.get()
+        if not email_user:
+            Message.show_email_user_miss()
+            return False
+        email_send = self.entry_email_send.get()
+        if not email_send:
+            Message.show_email_send_miss()
+            return False
+        if not ("sorbonne-universite.fr" in email_user
+                or "etu.upmc.fr" in email_user):
+            Message.show_email_not_valid(email_user)
+            return False
+        subject = self.entry_subject.get()
+        if not subject:
+            Message.show_subject_miss()
+            return False
+        return True
+
     def send_message(self):
         """Lance l'envoi du mail"""
-        email_user = self.entry_email_user.get()
-        email_send = self.entry_email_send.get()
-        email_cc = self.entry_email_cc.get()
-        subject = self.entry_subject.get()
-        body = self.entry_body.get("1.0", "end")
-        list_attachment = self.attachment.list_attachment
-        if email_user and email_send and subject:
+        if self.check():
+            email_user = self.entry_email_user.get()
+            email_send = self.entry_email_send.get()
+            email_cc = self.entry_email_cc.get()
+            subject = self.entry_subject.get()
+            body = self.entry_body.get("1.0", "end")
+            list_attachment = self.attachment.list_attachment
             if not email_cc:
                 email_cc = ""
             send_mail(email_user, email_send, email_cc,
@@ -82,5 +102,3 @@ class MailSenderInterface:
                       self.num_etudiant, self.password, self.data.signature)
             Message.show_send_mail()
             self.data.maj_files(email_user, email_send, email_cc)
-        else:
-            Message.show_send_mail_error()

@@ -14,8 +14,20 @@ def show_send_mail():
     showinfo("Envoi réussi", "Le mail a été envoyé !")
 
 
-def show_send_mail_error():
-    showerror("Erreur", "Merci de remplir tous les champs.")
+def show_email_user_miss():
+    showerror("Pas d'envoyeur", "Merci d'indiquer votre mail.")
+
+
+def show_email_send_miss():
+    showerror("Pas de destinataires", "Merci d'indiquer les destinataires.")
+
+
+def show_email_not_valid(mail):
+    showerror("Email non valide", f"L'email {mail} n'est pas valide.")
+
+
+def show_subject_miss():
+    showerror("Pas d'objet", "Vous avez oublié d'indiquer l'objet !")
 
 
 def show_new_user(mail):
