@@ -17,7 +17,7 @@ class Attachment:
 
         # Listbox
         self.listbox_attachment = tk.Listbox(self.fenetre, height=2, width=60)
-        self.listbox_attachment.grid(row=2, padx=10, pady=10)
+        self.listbox_attachment.grid(row=4, padx=10, pady=10)
 
         # Button
         self.button_attachment = ttk.Button(self.button_frame,
@@ -39,9 +39,10 @@ class Attachment:
                                                 ('zip files', '.zip'),
                                                 ('png files', '.png')])
         for f in filenames:
-            self.list_attachment.append(f)
-            self.listbox_attachment.insert(tk.END, f.split("/")[-1])
-            self.button_delete.config(state=tk.NORMAL)
+            if f not in self.list_attachment:
+                self.list_attachment.append(f)
+                self.listbox_attachment.insert(tk.END, f.split("/")[-1])
+                self.button_delete.config(state=tk.NORMAL)
 
     def delete_file(self):
         """Supprime une pièce jointe"""
