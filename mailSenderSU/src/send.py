@@ -10,6 +10,13 @@ from email.mime.base import MIMEBase
 from email import encoders
 
 
+def list_email(email):
+    """Retourne la liste des emails à partir d'une chaine de caractères"""
+    liste = email.split(",")
+    liste = [i.strip(" ") for i in liste]
+    return liste
+
+
 def send_mail(email_user, email_send, email_cc, subject,
               body, list_attachment, num_etudiant, password,
               signature, server="smtp.upmc.fr", port=587):
@@ -40,8 +47,8 @@ def send_mail(email_user, email_send, email_cc, subject,
     server.starttls()
     server.login(num_etudiant, password)
 
-    recipients = [email_send]
+    recipients = list_email(email_send)
     if email_cc != "":
-        recipients.append(email_cc)
+        recipients += list_email(email_cc)
     server.sendmail(email_user, recipients, text)
     server.quit()
