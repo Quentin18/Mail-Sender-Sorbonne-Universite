@@ -44,7 +44,7 @@ class Files:
     def get_signature(self):
         """Récupère la signature"""
         f = open(self.file_signature, "r")
-        signature = f.read().strip("\n")
+        signature = f.read()
         f.close()
         return signature
 

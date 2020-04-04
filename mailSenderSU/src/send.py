@@ -12,10 +12,10 @@ import mailSenderSU.src.message as Message
 
 
 def get_name_from_email(email):
-    """Retourne le nom associé à une adresse mail"""
-    prenom = email.split(".")[0].capitalize()
-    nom = email.split(".")[1].capitalize()
-    return f"{prenom} {nom}"
+    """Retourne le name associé à une adresse mail"""
+    firstname = email.split(".")[0].capitalize()
+    name = email.split(".")[1].capitalize()
+    return f"{firstname} {name}"
 
 
 def list_email(email):
@@ -25,16 +25,26 @@ def list_email(email):
     return liste
 
 
+def add_name_to_signature(signature, name, color="#263068"):
+    signature = signature.split("\n")
+    line = f'<p><small><font color={color}>{name}</font></small></p>'
+    signature.insert(4, line)
+    return "".join(signature)
+
+
 def send_mail(email_user, email_send, email_cc, subject,
               body, list_attachment, num_etudiant, password,
               signature, server="smtp.upmc.fr", port=587):
     """Envoie le mail"""
+    name = get_name_from_email(email_user)
     msg = MIMEMultipart()
-    msg['From'] = f"{get_name_from_email(email_user)} <{email_user}>"
+    msg['From'] = f"{name} <{email_user}>"
     msg['To'] = email_send
     if email_cc != "":
         msg['Cc'] = email_cc
     msg['Subject'] = subject
+
+    signature = add_name_to_signature(signature, name)
 
     msg.attach(MIMEText(body, 'plain'))
     msg.attach(MIMEText(signature, 'html'))
