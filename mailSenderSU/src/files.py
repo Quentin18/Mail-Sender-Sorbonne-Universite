@@ -30,6 +30,14 @@ def add_file(file, data):
     f.close()
 
 
+def write_file(file, liste_data):
+    """Ecrit un fichier à partir d'une liste"""
+    f = open(file, "w")
+    for data in liste_data:
+        f.write(f"{data}\n")
+    f.close()
+
+
 class Files:
     """Gère les fichiers de données"""
     def __init__(self, path):
@@ -76,12 +84,14 @@ class Files:
         add_file(self.file_history, text)
         if email_user not in self.list_email_user:
             if Message.show_new_user(email_user):
-                add_file(self.file_user, email_user)
                 self.list_email_user.append(email_user)
+                self.list_email_user.sort()
+                write_file(self.file_user, self.list_email_user)
         if email_send not in self.list_email_send:
             if Message.show_new_contact(email_send):
-                add_file(self.file_contacts, email_send)
                 self.list_email_send.append(email_send)
+                self.list_email_send.sort()
+                write_file(self.file_contacts, self.list_email_send)
         if email_cc != "" and email_cc not in self.list_email_send:
             if Message.show_new_contact(email_cc):
                 add_file(self.file_contacts, email_cc)
