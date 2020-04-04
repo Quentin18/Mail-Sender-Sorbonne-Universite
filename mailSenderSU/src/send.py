@@ -73,5 +73,6 @@ def send_mail(email_user, email_send, email_cc, subject,
         server.quit()
     except Exception:
         Message.show_send_mail_error()
-        return False
-    return True
+        return text
+    Message.show_send_mail()
+    return text

@@ -36,6 +36,7 @@ class Files:
         self.file_contacts = "".join([path, "/data/contacts.txt"])
         self.file_subject = "".join([path, "/data/subjects.txt"])
         self.file_signature = "".join([path, "/data/signature.html"])
+        self.file_history = "".join([path, "/data/history.log"])
         self.list_email_user = list_file(self.file_user)
         self.list_email_send = list_file(self.file_contacts)
         self.list_subject = list_file(self.file_subject)
@@ -48,8 +49,9 @@ class Files:
         f.close()
         return signature
 
-    def maj_files(self, email_user, email_send, email_cc):
+    def maj_files(self, email_user, email_send, email_cc, text):
         """Met à jour les fichiers de données"""
+        add_file(self.file_history, text)
         if email_user not in self.list_email_user:
             if Message.show_new_user(email_user):
                 add_file(self.file_user, email_user)
