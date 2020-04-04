@@ -11,16 +11,19 @@ import os
 
 
 @click.command()
-def main():
+@click.option("--clear", help="Clear log file", is_flag=True)
+@click.option("--style", help="Define style : [su] or [polytech]",
+              default="su")
+def main(clear, style):
     """Mail sender Sorbonne Universite"""
     path = os.path.dirname(os.path.abspath(__file__))
     window = tk.Tk()
-    login_interface = LoginInterface(window, path)
+    login_interface = LoginInterface(window, style, path)
     window.mainloop()
     if login_interface.login:
-        data = Files(path)
+        data = Files(path, clear)
         window = tk.Tk()
-        MailSenderInterface(window, data,
+        MailSenderInterface(window, style, data,
                             login_interface.num_etudiant,
                             login_interface.password)
         window.mainloop()
