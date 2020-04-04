@@ -23,7 +23,7 @@ def show_email_send_miss():
 
 
 def show_email_not_valid(mail):
-    showerror("Email non valide", f"L'email {mail} n'est pas valide.")
+    showerror("Email non valide", f"L'adresse {mail} n'est pas valide.")
 
 
 def show_subject_miss():

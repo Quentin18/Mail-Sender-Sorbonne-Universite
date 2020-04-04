@@ -64,7 +64,7 @@ class MailSenderInterface:
         # Pièces jointes
         self.attachment = Attachment(self.fenetre, self.button_frame)
 
-        self.button_frame.grid(row=3, padx=10, pady=10)
+        self.button_frame.grid(row=3, padx=10, pady=5)
 
     def check(self):
         """Vérifie les adresses mails"""
@@ -77,7 +77,7 @@ class MailSenderInterface:
             Message.show_email_send_miss()
             return False
         if not ("sorbonne-universite.fr" in email_user
-                or "etu.upmc.fr" in email_user):
+                or "upmc.fr" in email_user):
             Message.show_email_not_valid(email_user)
             return False
         subject = self.entry_subject.get()

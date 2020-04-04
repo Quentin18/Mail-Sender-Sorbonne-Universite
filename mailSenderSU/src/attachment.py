@@ -16,8 +16,14 @@ class Attachment:
         self.button_frame = button_frame
 
         # Listbox
-        self.listbox_attachment = tk.Listbox(self.fenetre, height=2, width=60)
-        self.listbox_attachment.grid(row=4, padx=10, pady=10)
+        self.frame_listbox = ttk.Frame(self.fenetre)
+        self.label_listbox = ttk.Label(self.frame_listbox,
+                                       text="Pièces jointes")
+        self.listbox_attachment = tk.Listbox(self.frame_listbox,
+                                             height=2, width=60)
+        self.label_listbox.grid(row=0)
+        self.listbox_attachment.grid(row=1)
+        self.frame_listbox.grid(row=4, padx=10, pady=10)
 
         # Button
         self.button_attachment = ttk.Button(self.button_frame,
