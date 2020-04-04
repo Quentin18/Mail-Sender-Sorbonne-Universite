@@ -4,6 +4,7 @@ Gestion des fichiers
 Quentin Deschamps, 2020
 """
 import mailSenderSU.src.message as Message
+import os
 
 
 def list_file(file):
@@ -32,15 +33,36 @@ def add_file(file, data):
 class Files:
     """Gère les fichiers de données"""
     def __init__(self, path):
-        self.file_user = "".join([path, "/data/user.txt"])
-        self.file_contacts = "".join([path, "/data/contacts.txt"])
-        self.file_subject = "".join([path, "/data/subjects.txt"])
-        self.file_signature = "".join([path, "/data/signature.html"])
-        self.file_history = "".join([path, "/data/history.log"])
+        self.path = path
+        self.file_user = self.absolute_path("/data/user.txt")
+        self.file_contacts = self.absolute_path("/data/contacts.txt")
+        self.file_subject = self.absolute_path("/data/subjects.txt")
+        self.file_signature = self.absolute_path("/data/signature.html")
+        self.file_history = self.absolute_path("/data/history.log")
+        self.create_files()
         self.list_email_user = list_file(self.file_user)
         self.list_email_send = list_file(self.file_contacts)
         self.list_subject = list_file(self.file_subject)
         self.signature = self.get_signature()
+
+    def absolute_path(self, file):
+        """Retourne le chemin absolu d'un fichier"""
+        return "".join([self.path, file])
+
+    def create_files(self):
+        """Crée les fichiers s'ils n'existent pas"""
+        if not os.path.exists(self.file_user):
+            with open(self.file_user, 'w'):
+                pass
+        if not os.path.exists(self.file_contacts):
+            with open(self.file_contacts, 'w'):
+                pass
+        if not os.path.exists(self.file_subject):
+            with open(self.file_subject, 'w'):
+                pass
+        if not os.path.exists(self.file_history):
+            with open(self.file_history, 'w'):
+                pass
 
     def get_signature(self):
         """Récupère la signature"""
