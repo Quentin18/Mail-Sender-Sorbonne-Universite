@@ -13,7 +13,7 @@ import mailSenderSU.src.message as Message
 
 class MailSenderInterface:
     """Interface du mail sender"""
-    def __init__(self, window, data, num_etudiant, password):
+    def __init__(self, window, style, data, num_etudiant, password):
         self.data = data
         self.num_etudiant = num_etudiant
         self.password = password
@@ -24,7 +24,7 @@ class MailSenderInterface:
         self.fenetre.resizable(width=False, height=False)
 
         # Style
-        self.style = Style(self.fenetre)
+        self.style = Style(self.fenetre, style)
 
         # Partie du haut
         self.frame = ttk.Frame(self.fenetre)

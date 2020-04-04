@@ -8,10 +8,22 @@ from tkinter import ttk
 
 class Style:
     """Définit le style d'une fenêtre"""
-    def __init__(self, window, bgcolor='#263068', theme='clam',
-                 fg_button='#e63228', bg_button='#ffffff',
-                 fg_label='#ffffff',
-                 font_button=('calibri', 10, 'bold')):
+    def __init__(self, window, style):
+        if style == 'polytech':
+            bgcolor = '#009ee0'
+            theme = 'clam'
+            fg_button = '#004877'
+            bg_button = '#ffffff'
+            fg_label = '#ffffff'
+            font_button = ('calibri', 10, 'bold')
+        else:
+            bgcolor = '#263068'
+            theme = 'clam'
+            fg_button = '#e63228'
+            bg_button = '#ffffff'
+            fg_label = '#ffffff'
+            font_button = ('calibri', 10, 'bold')
+
         self.window = window
         self.window.configure(bg=bgcolor)
         self.style = ttk.Style()

@@ -12,7 +12,7 @@ from mailSenderSU.src.message import show_login_error
 
 class LoginInterface:
     """Interface de connexion au serveur"""
-    def __init__(self, window, path):
+    def __init__(self, window, style, path):
         self.login = False
         self.num_etudiant, self.password = "", ""
 
@@ -22,7 +22,7 @@ class LoginInterface:
         self.login_window.resizable(width=False, height=False)
 
         # Style
-        self.style = Style(self.login_window)
+        self.style = Style(self.login_window, style)
 
         # Gauche
         self.frame_left = ttk.Frame(self.login_window)
@@ -45,7 +45,11 @@ class LoginInterface:
         self.frame_left.grid(row=0, column=0, padx=10, pady=10)
 
         # Droite
-        self.logo = tk.PhotoImage(file="".join([path, "/image/su.png"]))
+        if style == "polytech":
+            image = "".join([path, "/image/polytech.png"])
+        else:
+            image = "".join([path, "/image/su.png"])
+        self.logo = tk.PhotoImage(file=image)
         self.label_logo = tk.Label(self.login_window, image=self.logo)
         self.label_logo.grid(row=0, column=1, padx=10, pady=10)
 

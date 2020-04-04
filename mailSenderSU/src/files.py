@@ -40,14 +40,14 @@ def write_file(file, liste_data):
 
 class Files:
     """Gère les fichiers de données"""
-    def __init__(self, path):
+    def __init__(self, path, clear):
         self.path = path
         self.file_user = self.absolute_path("/data/user.txt")
         self.file_contacts = self.absolute_path("/data/contacts.txt")
         self.file_subject = self.absolute_path("/data/subjects.txt")
         self.file_signature = self.absolute_path("/data/signature.html")
         self.file_history = self.absolute_path("/data/history.log")
-        self.create_files()
+        self.create_files(clear)
         self.list_email_user = list_file(self.file_user)
         self.list_email_send = list_file(self.file_contacts)
         self.list_subject = list_file(self.file_subject)
@@ -57,7 +57,7 @@ class Files:
         """Retourne le chemin absolu d'un fichier"""
         return "".join([self.path, file])
 
-    def create_files(self):
+    def create_files(self, clear):
         """Crée les fichiers s'ils n'existent pas"""
         if not os.path.exists(self.file_user):
             with open(self.file_user, 'w'):
@@ -68,7 +68,7 @@ class Files:
         if not os.path.exists(self.file_subject):
             with open(self.file_subject, 'w'):
                 pass
-        if not os.path.exists(self.file_history):
+        if not os.path.exists(self.file_history) or clear:
             with open(self.file_history, 'w'):
                 pass
 
