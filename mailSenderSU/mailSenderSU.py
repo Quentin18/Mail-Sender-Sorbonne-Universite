@@ -11,8 +11,10 @@ import os
 
 
 @click.command()
-@click.option("--clear", help="Clear log file", is_flag=True)
-@click.option("--style", help="Define style : [su] or [polytech]",
+@click.option("--clear",
+              help="Clear data : all, user, contacts, subjects, history",
+              default="")
+@click.option("--style", help="Define style : su, polytech",
               default="su")
 def main(clear, style):
     """Mail sender Sorbonne Universite"""

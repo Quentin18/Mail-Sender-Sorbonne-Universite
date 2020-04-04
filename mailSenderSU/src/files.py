@@ -38,6 +38,12 @@ def write_file(file, liste_data):
     f.close()
 
 
+def create_file(file):
+    """Crée un fichier vide"""
+    with open(file, "w"):
+        pass
+
+
 class Files:
     """Gère les fichiers de données"""
     def __init__(self, path, clear):
@@ -58,19 +64,19 @@ class Files:
         return "".join([self.path, file])
 
     def create_files(self, clear):
-        """Crée les fichiers s'ils n'existent pas"""
-        if not os.path.exists(self.file_user):
-            with open(self.file_user, 'w'):
-                pass
-        if not os.path.exists(self.file_contacts):
-            with open(self.file_contacts, 'w'):
-                pass
-        if not os.path.exists(self.file_subject):
-            with open(self.file_subject, 'w'):
-                pass
-        if not os.path.exists(self.file_history) or clear:
-            with open(self.file_history, 'w'):
-                pass
+        """Crée les fichiers s'ils n'existent pas ou recrée ceux demandés"""
+        if (not os.path.exists(self.file_user)
+                or clear in ["all", "user"]):
+            create_file(self.file_user)
+        if (not os.path.exists(self.file_contacts)
+                or clear in ["all", "contacts"]):
+            create_file(self.file_contacts)
+        if (not os.path.exists(self.file_subject)
+                or clear in ["all", "subjects"]):
+            create_file(self.file_subject)
+        if (not os.path.exists(self.file_history)
+                or clear in ["all", "history"]):
+            create_file(self.file_history)
 
     def get_signature(self):
         """Récupère la signature"""
@@ -94,5 +100,6 @@ class Files:
                 write_file(self.file_contacts, self.list_email_send)
         if email_cc != "" and email_cc not in self.list_email_send:
             if Message.show_new_contact(email_cc):
-                add_file(self.file_contacts, email_cc)
-                self.list_email_user.append(email_cc)
+                self.list_email_send.append(email_cc)
+                self.list_email_send.sort()
+                write_file(self.file_contacts, self.list_email_send)
