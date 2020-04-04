@@ -31,7 +31,8 @@ class MailSenderInterface:
         self.label_email_user = ttk.Label(self.frame, text="De")
         self.entry_email_user = ttk.Combobox(self.frame, width=50,
                                              values=data.list_email_user)
-        self.entry_email_user.current(0)
+        if data.list_email_user != []:
+            self.entry_email_user.current(0)
         self.label_email_user.grid(row=0, column=0, padx=10, pady=5)
         self.entry_email_user.grid(row=0, column=1, padx=10, pady=5)
         self.label_email_send = ttk.Label(self.frame, text="À")
