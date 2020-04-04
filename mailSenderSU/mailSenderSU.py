@@ -17,7 +17,7 @@ import os
 @click.option("--style", help="Define style : su, polytech",
               default="su")
 def main(clear, style):
-    """Mail sender Sorbonne Universite"""
+    """Mail Sender Sorbonne Universite"""
     path = os.path.dirname(os.path.abspath(__file__))
     window = tk.Tk()
     login_interface = LoginInterface(window, style, path)

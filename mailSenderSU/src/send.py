@@ -12,20 +12,21 @@ import mailSenderSU.src.message as Message
 
 
 def get_name_from_email(email):
-    """Retourne le name associé à une adresse mail"""
+    """Retourne le nom associé à une adresse mail"""
     firstname = email.split(".")[0].capitalize()
     name = email.split(".")[1].capitalize()
     return f"{firstname} {name}"
 
 
 def list_email(email):
-    """Retourne la liste des emails à partir d'une chaine de caractères"""
+    """Retourne la liste des emails à partir d'une chaîne de caractères"""
     liste = email.split(",")
     liste = [i.strip(" ") for i in liste]
     return liste
 
 
 def add_name_to_signature(signature, name, color="#263068"):
+    """Ajoute le nom à la signature"""
     signature = signature.split("\n")
     line = f'<p><small><font color={color}>{name}</font></small></p>'
     signature.insert(4, line)

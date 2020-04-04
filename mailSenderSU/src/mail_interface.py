@@ -68,7 +68,7 @@ class MailSenderInterface:
         self.button_frame.grid(row=3, padx=10, pady=5)
 
     def check(self):
-        """Vérifie les adresses mails"""
+        """Vérifie les adresses mail"""
         email_user = self.entry_email_user.get()
         if not email_user:
             Message.show_email_user_miss()
