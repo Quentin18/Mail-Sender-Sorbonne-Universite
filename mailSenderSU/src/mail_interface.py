@@ -46,8 +46,7 @@ class MailSenderInterface:
         self.label_email_cc.grid(row=2, column=0, padx=10, pady=5)
         self.entry_email_cc.grid(row=2, column=1, padx=10, pady=5)
         self.label_subject = ttk.Label(self.frame, text="Objet")
-        self.entry_subject = ttk.Combobox(self.frame, width=50,
-                                          values=data.list_subject)
+        self.entry_subject = ttk.Entry(self.frame, width=52)
         self.label_subject.grid(row=3, column=0, padx=10, pady=5)
         self.entry_subject.grid(row=3, column=1, padx=10, pady=5)
         self.frame.grid(row=0, padx=10, pady=10)

@@ -42,7 +42,7 @@ mailSenderSU --style polytech
 ```bash
 mailSenderSU --clear [OPTION]
 ```
-où [OPTION] peut prendre all, user, contacts, subjects, history
+où [OPTION] peut prendre all, user, contacts, history
 
 ## Contact
 Pour reporter un problème ou faire des remarques, veuillez me contacter à l'adresse suivante ; quentin.deschamps.1@sorbonne-universite.fr.

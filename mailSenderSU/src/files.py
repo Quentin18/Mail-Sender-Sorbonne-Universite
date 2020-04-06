@@ -50,13 +50,11 @@ class Files:
         self.path = path
         self.file_user = self.absolute_path("/data/user.txt")
         self.file_contacts = self.absolute_path("/data/contacts.txt")
-        self.file_subject = self.absolute_path("/data/subjects.txt")
         self.file_signature = self.absolute_path("/data/signature.html")
         self.file_history = self.absolute_path("/data/history.log")
         self.create_files(clear)
         self.list_email_user = list_file(self.file_user)
         self.list_email_send = list_file(self.file_contacts)
-        self.list_subject = list_file(self.file_subject)
         self.signature = self.get_signature()
 
     def absolute_path(self, file):
@@ -71,9 +69,6 @@ class Files:
         if (not os.path.exists(self.file_contacts)
                 or clear in ["all", "contacts"]):
             create_file(self.file_contacts)
-        if (not os.path.exists(self.file_subject)
-                or clear in ["all", "subjects"]):
-            create_file(self.file_subject)
         if (not os.path.exists(self.file_history)
                 or clear in ["all", "history"]):
             create_file(self.file_history)

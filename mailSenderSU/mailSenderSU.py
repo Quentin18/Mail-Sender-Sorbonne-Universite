@@ -12,7 +12,7 @@ import os
 
 @click.command()
 @click.option("--clear",
-              help="Clear data : all, user, contacts, subjects, history",
+              help="Clear data : all, user, contacts, history",
               default="")
 @click.option("--style", help="Define style : su, polytech",
               default="su")
