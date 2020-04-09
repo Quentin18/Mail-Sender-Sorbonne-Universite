@@ -1,0 +1,2 @@
+include mailSenderSU/image/*.png
+include mailSenderSU/data/signature.html
