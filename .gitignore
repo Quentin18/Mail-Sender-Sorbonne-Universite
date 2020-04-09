@@ -358,3 +358,4 @@ MigrationBackup/
 
 # Sphinx documentation
 doc/build/
+doc/source/_*
