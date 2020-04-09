@@ -24,7 +24,7 @@ class MailSenderInterface:
         self.fenetre.resizable(width=False, height=False)
 
         # Style
-        self.style = Style(self.fenetre, style)
+        self.style = Style(self.fenetre, style, data.path)
 
         # Partie du haut
         self.frame = ttk.Frame(self.fenetre)

@@ -24,7 +24,7 @@ class LoginInterface:
         self.login_window.bind("<Return>", self.connect)
 
         # Style
-        self.style = Style(self.login_window, style)
+        self.style = Style(self.login_window, style, path)
 
         # Gauche
         self.frame_left = ttk.Frame(self.login_window)
@@ -47,11 +47,7 @@ class LoginInterface:
         self.frame_left.grid(row=0, column=0, padx=10, pady=10)
 
         # Droite
-        if style == "polytech":
-            image = "".join([path, "/image/polytech.png"])
-        else:
-            image = "".join([path, "/image/su.png"])
-        self.logo = tk.PhotoImage(file=image)
+        self.logo = tk.PhotoImage(file=self.style.image)
         self.label_logo = tk.Label(self.login_window, image=self.logo)
         self.label_logo.grid(row=0, column=1, padx=10, pady=10)
 
