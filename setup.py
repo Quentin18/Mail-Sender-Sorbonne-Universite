@@ -12,8 +12,8 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/Quentin18/Mail-Sender-Sorbonne-Universite",
-    packages=setuptools.find_packages(),
-    install_requires=['sphinx', 'os', 'tkinter', 'click', 'smtplib', 'email'],
+    packages=["mailSenderSU"],
+    install_requires=['sphinx', 'click'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
