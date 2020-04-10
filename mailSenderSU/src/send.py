@@ -13,8 +13,11 @@ import mailSenderSU.src.message as Message
 
 def get_name_from_email(email):
     """Retourne le nom associé à une adresse mail"""
-    firstname = email.split(".")[0].capitalize()
-    name = email.split(".")[1].capitalize()
+    fullname = email.split("@")[0]
+    firstname = " ".join([
+        i.capitalize() for i in fullname.split(".")[0].split("-")])
+    name = " ".join([
+        i.capitalize() for i in fullname.split(".")[1].split("_")])
     return f"{firstname} {name}"
 
 
