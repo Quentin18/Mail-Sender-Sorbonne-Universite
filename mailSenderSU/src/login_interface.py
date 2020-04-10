@@ -21,7 +21,7 @@ class LoginInterface:
         self.login_window.title("Authentification")
         self.login_window.resizable(width=False, height=False)
         self.login_window.focus_set()
-        self.login_window.bind("<Return>", self.connect)
+        self.login_window.bind("<Return>", self.return_connect)
 
         # Style
         self.style = Style(self.login_window, style, path)
@@ -51,7 +51,11 @@ class LoginInterface:
         self.label_logo = tk.Label(self.login_window, image=self.logo)
         self.label_logo.grid(row=0, column=1, padx=10, pady=10)
 
-    def connect(self, event, server="smtp.upmc.fr", port=587):
+    def return_connect(self, event):
+        """Connexion au serveur avec la touche Enter"""
+        self.connect()
+
+    def connect(self, server="smtp.upmc.fr", port=587):
         """Vérifie la validité du numéro étudiant et du mot de passe"""
         num_etudiant = self.entry_num_etudiant.get()
         password = self.entry_password.get()
