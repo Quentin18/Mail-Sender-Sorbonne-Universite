@@ -47,7 +47,8 @@ class Attachment:
         for f in filenames:
             if f not in self.list_attachment:
                 self.list_attachment.append(f)
-                self.listbox_attachment.insert(tk.END, f.split("/")[-1])
+                self.listbox_attachment.insert(
+                    tk.END, f.split("/")[-1].replace(" ", "_"))
                 self.button_delete.config(state=tk.NORMAL)
 
     def delete_file(self):
