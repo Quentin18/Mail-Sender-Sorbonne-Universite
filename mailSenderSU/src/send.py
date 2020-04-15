@@ -36,6 +36,11 @@ def add_name_to_signature(signature, name, color="#263068"):
     return "".join(signature)
 
 
+def is_zip(path):
+    """Retourne True si le fichier est un zip"""
+    return path.split(".")[-1] == "zip"
+
+
 def send_mail(email_user, email_send, email_cc, subject,
               body, list_attachment, num_etudiant, password,
               signature, server="smtp.upmc.fr", port=587):
@@ -55,12 +60,16 @@ def send_mail(email_user, email_send, email_cc, subject,
 
     for path in list_attachment:
         attachment = open(path, 'rb')
-        part = MIMEBase('application', 'octet-stream')
-        part.set_payload((attachment).read())
+        if is_zip(path):
+            type_file = 'zip'
+        else:
+            type_file = 'octet-stream'
+        part = MIMEBase('application', type_file)
+        part.set_payload(attachment.read())
         encoders.encode_base64(part)
-        filename = path.split("/")[-1]
+        filename = path.split("/")[-1].replace(" ", "_")
         part.add_header('Content-Disposition',
-                        "attachment; filename= " + filename)
+                        'attachment; filename= ' + filename)
 
         msg.attach(part)
 
