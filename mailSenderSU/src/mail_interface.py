@@ -52,7 +52,8 @@ class MailSenderInterface:
         self.frame.grid(row=0, padx=10, pady=10)
 
         # Corps du texte
-        self.entry_body = tk.Text(self.fenetre, height=10, width=60)
+        self.entry_body = tk.Text(self.fenetre, height=10, width=60,
+                                  wrap=tk.WORD)
         self.entry_body.grid(row=1, padx=10, pady=10)
 
         # Boutons
