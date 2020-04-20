@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="mailSenderSU",
-    version="0.0.5",
+    version="0.0.6",
     author="Quentin Deschamps",
     author_email="quentindeschamps18@gmail.com",
     description="Mail sender for Sorbonne Universite",
@@ -15,7 +15,7 @@ setuptools.setup(
     packages=["mailSenderSU", "mailSenderSU.src",
               "mailSenderSU.image", "mailSenderSU.data"],
     include_package_data=True,
-    install_requires=['sphinx', 'click'],
+    install_requires=['click'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
@@ -24,6 +24,6 @@ setuptools.setup(
     python_requires='>=3.6',
     entry_points="""
     [console_scripts]
-    mailSenderSU=mailSenderSU.mailSenderSU:main
+    mailSenderSU=mailSenderSU.__main__:main
     """,
 )

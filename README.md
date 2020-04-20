@@ -10,11 +10,18 @@ pip3 install mailSenderSU
 ```
 
 ## Utilisation
+Il est recommandé d'utiliser cette application sur Linux. Elle reste utilisable sur Windows mais sans les options.
 ### Lancement
-- Pour lancer Mail Sender SU, entrez :
+Pour lancer Mail Sender SU, entrez dans un terminal :
 ```bash
 mailSenderSU
 ```
+Sur Windows, ouvrez un terminal en faisant win+r puis entrez :
+```bash
+python3 -m mailSenderSU
+```
+Cette commande est aussi utilisable sur Linux.
+
 ### Authentification
 Entrez votre numéro étudiant et votre mot de passe pour vous connecter au serveur. Si la connexion est établie, vous êtes dirigés sur la fenêtre pour rédiger votre mail.
 
@@ -22,10 +29,10 @@ Entrez votre numéro étudiant et votre mot de passe pour vous connecter au serv
 Dans le premier champ, vous devez utiliser votre adresse sorbonne-universite.fr ou upmc.fr. Une adresse externe à l'université ne fonctionnera pas.
 
 ### Destinataires
-Dans le deuxième champ, vous devez mettre les adresses des destinataires. Veuillez les séparer par des virgules s'il y en a plusieurs. Dans le troisième champ, se sont les destinataires en copie. Cela fonctionne identiquement au deuxième champ.
+Dans le deuxième champ, vous devez mettre les adresses des destinataires. Veuillez les séparer par des virgules s'il y en a plusieurs. Dans le troisième champ, ce sont les destinataires en copie. Cela fonctionne identiquement au deuxième champ.
 
 ### Pièces jointes
-Pour insérer des pièces jointes, pressez le bouton "Joindre un fichier". Sélectionner le(s) fichier(s) à insérer. Il apparaîtront dans le cadre du bas. Vous pouvez supprimer une pièce jointe en cliquant sur celle-ci et en pressant le bouton "Supprimer".
+Pour insérer des pièces jointes, pressez le bouton "Joindre un fichier". Sélectionnez le(s) fichier(s) à insérer. Il apparaîtront dans le cadre du bas. Vous pouvez supprimer une pièce jointe en cliquant sur celle-ci puis en pressant le bouton "Supprimer".
 
 ### Options
 - Obtenir l'aide :

@@ -29,3 +29,7 @@ def main(clear, style):
                             login_interface.num_etudiant,
                             login_interface.password)
         window.mainloop()
+
+
+if __name__ == "__main__":
+    main("", "su")
