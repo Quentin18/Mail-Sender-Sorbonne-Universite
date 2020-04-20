@@ -16,7 +16,7 @@ Pour lancer Mail Sender SU, entrez dans un terminal :
 ```bash
 mailSenderSU
 ```
-Sur Windows, ouvrez un terminal en faisant win+r puis entrez :
+Sur Windows, ouvrez un terminal en faisant win+r puis cmd et entrez :
 ```bash
 python3 -m mailSenderSU
 ```
