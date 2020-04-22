@@ -10,8 +10,9 @@ pip3 install mailSenderSU
 ```
 
 ## Utilisation
-![](https://github.com/Quentin18/Mail-Sender-Sorbonne-Universite/blob/master/img/interface.gif)
 Il est recommandé d'utiliser cette application sur Linux. Elle reste utilisable sur Windows mais sans les options.
+![](https://github.com/Quentin18/Mail-Sender-Sorbonne-Universite/blob/master/img/interface.gif)
+
 ### Lancement
 Pour lancer Mail Sender SU, entrez dans un terminal :
 ```bash
