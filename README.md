@@ -10,8 +10,7 @@ pip3 install mailSenderSU
 ```
 
 ## Utilisation
-![](https://github.com/Quentin18/Mail-Sender-Sorbonne-Universite/tree/master/img/interface.gif)
-
+![](https://github.com/Quentin18/Mail-Sender-Sorbonne-Universite/blob/master/img/interface.gif)
 Il est recommandé d'utiliser cette application sur Linux. Elle reste utilisable sur Windows mais sans les options.
 ### Lancement
 Pour lancer Mail Sender SU, entrez dans un terminal :
@@ -37,9 +36,8 @@ Dans le deuxième champ, vous devez mettre les adresses des destinataires. Veuil
 Pour insérer des pièces jointes, pressez le bouton "Joindre un fichier". Sélectionnez le(s) fichier(s) à insérer. Il apparaîtront dans le cadre du bas. Vous pouvez supprimer une pièce jointe en cliquant sur celle-ci puis en pressant le bouton "Supprimer".
 
 ### Signature
-Les mails envoyés comporteront une signature automatique avec votre nom et les logos de l'université comme ci-dessous.
-
-![](https://github.com/Quentin18/Mail-Sender-Sorbonne-Universite/tree/master/img/mail_exemple.png)
+Les mails envoyés comporteront une signature automatique avec votre nom et les logos de l'université.
+![](https://github.com/Quentin18/Mail-Sender-Sorbonne-Universite/blob/master/img/mail_exemple.png)
 
 ### Options
 - Obtenir l'aide :
