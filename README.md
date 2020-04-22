@@ -50,6 +50,7 @@ mailSenderSU --help
 ```bash
 mailSenderSU --style polytech
 ```
+![](https://github.com/Quentin18/Mail-Sender-Sorbonne-Universite/blob/master/img/polytech_style.png)
 
 - Nettoyer les fichiers :
 ```bash
