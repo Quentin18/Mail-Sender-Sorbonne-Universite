@@ -20,3 +20,7 @@ class Test(unittest.TestCase):
         window = tk.Tk()
         MailSenderInterface(window, "su", data, "", "")
         window.destroy()
+
+
+if __name__ == "__main__":
+    unittest.main()
