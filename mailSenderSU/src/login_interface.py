@@ -47,9 +47,12 @@ class LoginInterface:
         self.frame_left.grid(row=0, column=0, padx=10, pady=10)
 
         # Droite
-        self.logo = tk.PhotoImage(file=self.style.image)
-        self.label_logo = tk.Label(self.login_window, image=self.logo)
-        self.label_logo.grid(row=0, column=1, padx=10, pady=10)
+        try:
+            self.logo = tk.PhotoImage(file=self.style.image)
+            self.label_logo = tk.Label(self.login_window, image=self.logo)
+            self.label_logo.grid(row=0, column=1, padx=10, pady=10)
+        except Exception:
+            pass
 
     def return_connect(self, event):
         """Connexion au serveur avec la touche Enter"""
