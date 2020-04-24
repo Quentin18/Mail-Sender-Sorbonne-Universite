@@ -18,9 +18,6 @@ import os
               default="su")
 def main(clear, style):
     """Mail Sender Sorbonne Universite"""
-    if os.environ.get('DISPLAY', '') == '':
-        os.environ.__setitem__('DISPLAY', ':0.0')
-
     path = os.path.dirname(os.path.abspath(__file__))
     window = tk.Tk()
     login_interface = LoginInterface(window, style, path)

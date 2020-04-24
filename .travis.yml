@@ -8,4 +8,5 @@ python:
 install:
   - pip install .
 
-script: python -m mailSenderSU
+script:
+  - python -m unittest discover -v test
