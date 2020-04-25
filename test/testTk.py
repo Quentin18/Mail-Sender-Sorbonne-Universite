@@ -10,25 +10,15 @@ from mailSenderSU.src.files import Files
 class Test(unittest.TestCase):
     """Tests de l'interface"""
     def test_app(self):
-        failed = False
-        try:
-            path = os.path.dirname(mailSenderSU.__file__)
-            window = tk.Tk()
-            LoginInterface(window, "su", path)
-            window.destroy()
-        except Exception:
-            failed = True
-        self.assertFalse(failed)
+        path = os.path.dirname(mailSenderSU.__file__)
+        window = tk.Tk()
+        LoginInterface(window, "su", path)
+        window.destroy()
 
-        failed = False
-        try:
-            data = Files(path, "")
-            window = tk.Tk()
-            MailSenderInterface(window, "su", data, "", "")
-            window.destroy()
-        except Exception:
-            failed = True
-        self.assertFalse(failed)
+        data = Files(path, "")
+        window = tk.Tk()
+        MailSenderInterface(window, "su", data, "", "")
+        window.destroy()
 
 
 if __name__ == "__main__":
