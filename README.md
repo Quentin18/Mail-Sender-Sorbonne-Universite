@@ -1,4 +1,5 @@
 # Mail Sender Sorbonne Université
+[![Build Status](https://travis-ci.org/Quentin18/Mail-Sender-Sorbonne-Universite.svg?branch=master)](https://travis-ci.org/Quentin18/Mail-Sender-Sorbonne-Universite)
 
 Application de mail sender en Python pour les étudiants de Sorbonne Université.
 
