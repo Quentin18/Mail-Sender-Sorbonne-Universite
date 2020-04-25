@@ -18,6 +18,8 @@ def get_name_from_email(email):
         i.capitalize() for i in fullname.split(".")[0].split("-")])
     name = " ".join([
         i.capitalize() for i in fullname.split(".")[1].split("_")])
+    if name[-1] in "1234567890":
+        name = name[:-1]
     return f"{firstname} {name}"
 
 

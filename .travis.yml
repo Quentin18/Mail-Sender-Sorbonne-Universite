@@ -1,14 +1,9 @@
 language: python
 
 python:
-  - 3.6
-  - 3.7
-  - 3.8
-
-obs:
-  include:
-    - os: linux
-    - os: osx
+  - "3.6"
+  - "3.7"
+  - "3.8"
 
 dist: xenial
 
@@ -18,7 +13,7 @@ services:
 script: xvfb-run make test
 
 install:
-  - pip3 install .
+  - pip install .
 
 script:
-  - python3 -m unittest discover -v test
+  - python -m unittest discover -v test
