@@ -29,7 +29,6 @@ services:
 script: xvfb-run make test
 
 install:
-  - ./.travis/install.sh
   - pip install .
 
 script:
