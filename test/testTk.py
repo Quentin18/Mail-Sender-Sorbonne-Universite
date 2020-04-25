@@ -8,18 +8,27 @@ from mailSenderSU.src.files import Files
 
 class Test(unittest.TestCase):
     """Tests de l'interface"""
-    def loginTest(self):
-        path = os.path.dirname(os.path.abspath(__file__))
-        window = tk.Tk()
-        LoginInterface(window, "su", path)
-        window.destroy()
+    def test_app(self):
+        failed = False
+        try:
+            path = os.path.dirname(os.path.abspath(__file__))
+            path = "/".join(path.split("/")[:-1] + ["mailSenderSU"])
+            window = tk.Tk()
+            LoginInterface(window, "su", path)
+            window.destroy()
+        except Exception:
+            failed = True
+        self.assertFalse(failed)
 
-    def mailInterfaceTest(self):
-        path = os.path.dirname(os.path.abspath(__file__))
-        data = Files(path, "")
-        window = tk.Tk()
-        MailSenderInterface(window, "su", data, "", "")
-        window.destroy()
+        failed = False
+        try:
+            data = Files(path, "")
+            window = tk.Tk()
+            MailSenderInterface(window, "su", data, "", "")
+            window.destroy()
+        except Exception:
+            failed = True
+        self.assertFalse(failed)
 
 
 if __name__ == "__main__":
