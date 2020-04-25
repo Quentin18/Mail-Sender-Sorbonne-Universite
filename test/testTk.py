@@ -10,6 +10,10 @@ from mailSenderSU.src.files import Files
 class Test(unittest.TestCase):
     """Tests de l'interface"""
     def test_app(self):
+        if os.environ.get('DISPLAY', '') == '':
+            print('No display found. Using:0.0')
+            os.environ.__setitem__('DISPLAY', ':0.0')
+
         path = os.path.dirname(mailSenderSU.__file__)
         window = tk.Tk()
         LoginInterface(window, "su", path)
