@@ -9,12 +9,6 @@ obs:
   include:
     - os: linux
     - os: osx
-      language: minimal
-    - os: windows
-      language: minimal
-      before_install:
-      - choco install python3
-      - export PATH="/c/Python37:/c/Python37/Scripts:$PATH"
 
 dist: xenial
 
@@ -24,7 +18,7 @@ services:
 script: xvfb-run make test
 
 install:
-  - pip install .
+  - pip3 install .
 
 script:
-  - python -m unittest discover -v test
+  - python3 -m unittest discover -v test
