@@ -1,19 +1,42 @@
 language: python
 
-python:
-  - "3.6"
-  - "3.7"
-  - "3.8"
-
-dist: xenial
-
 services:
   - xvfb
 
-script: xvfb-run make test
+jobs:
+  include:
+    - name: "Python 3.6 on Xenial Linux"
+      python: 3.6
+    - name: "Python 3.7 on Xenial Linux"
+      python: 3.7
+    - name: "Python 3.8 on Xenial Linux"
+      python: 3.8
+    - name: "Python 3.6.5 on macOS"
+      os: osx
+      osx_image: xcode9.4  # Python 3.6.5
+      language: shell
+    - name: "Python 3.7.3 on macOS"
+      os: osx
+      osx_image: xcode10.2  # Python 3.7.3
+      language: shell
+    - name: "Python 3.8.0 on Windows"
+      os: windows
+      language: shell
+      before_install:
+        - choco install python --version 3.8.0
+        - python -m pip install --upgrade pip
+      env: PATH=/c/Python38:/c/Python38/Scripts:$PATH
+
+before_install:
+  - python3 --version
+  - pip3 install --upgrade pip
+  - pip3 install codecov
 
 install:
-  - pip install .
+  - pip3 install .
 
 script:
-  - python -m unittest discover -v test
+  - python3 -m unittest discover -v test
+
+after_success:
+  - python3 -m codecov
