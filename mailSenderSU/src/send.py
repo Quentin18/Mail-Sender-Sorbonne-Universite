@@ -7,6 +7,7 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
+from email.header import Header
 from email import encoders
 import mailSenderSU.src.message as Message
 
@@ -49,11 +50,11 @@ def send_mail(email_user, email_send, email_cc, subject,
     """Envoie le mail"""
     name = get_name_from_email(email_user)
     msg = MIMEMultipart()
-    msg['From'] = f"{name} <{email_user}>"
-    msg['To'] = email_send
+    msg['From'] = Header(f"{name} <{email_user}>", 'ascii', header_name=name)
+    msg['To'] = Header(email_send, 'ascii')
     if email_cc != "":
-        msg['Cc'] = email_cc
-    msg['Subject'] = subject
+        msg['Cc'] = Header(email_cc, 'ascii')
+    msg['Subject'] = Header(subject, 'ascii')
 
     signature = add_name_to_signature(signature, name)
 
