@@ -10,11 +10,11 @@ class Style:
     """Définit le style d'une fenêtre"""
     def __init__(self, window, style, path):
         if style == 'polytech':
-            self.image = "".join([path, "/image/polytech.png"])
+            self.image = "".join([path, "/image/polytech.gif"])
             bgcolor = '#009ee0'
             fg_button = '#004877'
         else:
-            self.image = "".join([path, "/image/su.png"])
+            self.image = "".join([path, "/image/su.gif"])
             bgcolor = '#263068'
             fg_button = '#e63228'
         theme = 'clam'
