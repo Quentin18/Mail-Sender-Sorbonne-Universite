@@ -60,7 +60,7 @@ mailSenderSU --clear [OPTION]
 où [OPTION] peut prendre all, user, contacts, history
 
 ## Contact
-Pour reporter un problème ou faire des remarques, veuillez me contacter à l'adresse suivante ; quentin.deschamps@etu.sorbonne-universite.fr.
+Pour reporter un problème ou faire des remarques, veuillez me contacter à l'adresse suivante : quentin.deschamps@etu.sorbonne-universite.fr.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
