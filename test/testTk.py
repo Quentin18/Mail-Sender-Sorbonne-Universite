@@ -5,6 +5,7 @@ import mailSenderSU
 from mailSenderSU.src.login_interface import LoginInterface
 from mailSenderSU.src.mail_interface import MailSenderInterface
 from mailSenderSU.src.files import Files
+from mailSenderSU.src.send import send_mail
 
 
 class Test(unittest.TestCase):
@@ -19,6 +20,20 @@ class Test(unittest.TestCase):
         window = tk.Tk()
         MailSenderInterface(window, "su", data, "", "")
         window.destroy()
+
+        password = os.environ.get("PWD")
+        print(password)
+        send_mail(
+            "quentin.deschamps@etu.sorbonne-universite.fr",
+            "quentindeschamps18@orange.fr",
+            "",
+            "Test Travis",
+            "Test automatique réalisé par Travis !",
+            [],
+            "28609177",
+            password,
+            data.file_signature
+            )
 
 
 if __name__ == "__main__":
