@@ -98,8 +98,12 @@ class MailSenderInterface:
             list_attachment = self.attachment.list_attachment
             if not email_cc:
                 email_cc = ""
-            text = send_mail(email_user, email_send, email_cc,
-                             subject, body, list_attachment,
-                             self.num_etudiant, self.password,
-                             self.data.signature)
+            is_sent, text = send_mail(email_user, email_send, email_cc,
+                                      subject, body, list_attachment,
+                                      self.num_etudiant, self.password,
+                                      self.data.signature)
+            if is_sent:
+                Message.show_send_mail()
+            else:
+                Message.show_send_mail_error()
             self.data.maj_files(email_user, email_send, email_cc, text)

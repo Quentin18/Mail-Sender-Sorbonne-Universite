@@ -28,7 +28,7 @@ class Test(unittest.TestCase):
         email_send = os.environ.get("MAIL_TEST")
         num_etudiant = os.environ.get("NUM")
         password = os.environ.get("PWD")
-        send_mail(
+        ret = send_mail(
             email_user,
             email_send,
             "",
@@ -39,6 +39,7 @@ class Test(unittest.TestCase):
             password,
             data.file_signature
             )
+        self.assertTrue(ret[0])
 
 
 if __name__ == "__main__":

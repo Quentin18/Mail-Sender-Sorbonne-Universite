@@ -9,7 +9,6 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email.header import Header
 from email import encoders
-import mailSenderSU.src.message as Message
 
 
 def get_name_from_email(email):
@@ -88,7 +87,5 @@ def send_mail(email_user, email_send, email_cc, subject,
         server.sendmail(email_user, recipients, text)
         server.quit()
     except Exception:
-        Message.show_send_mail_error()
-        return text
-    Message.show_send_mail()
-    return text
+        return False, text
+    return True, text
