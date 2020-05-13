@@ -21,16 +21,21 @@ class Test(unittest.TestCase):
         MailSenderInterface(window, "su", data, "", "")
         window.destroy()
 
+    def test_send(self):
+        path = os.path.dirname(mailSenderSU.__file__)
+        data = Files(path, "")
+        email_user = os.environ.get("MAIL_SU")
+        email_send = os.environ.get("MAIL_TEST")
+        num_etudiant = os.environ.get("NUM")
         password = os.environ.get("PWD")
-        print(password)
         send_mail(
-            "quentin.deschamps@etu.sorbonne-universite.fr",
-            "quentindeschamps18@orange.fr",
+            email_user,
+            email_send,
             "",
             "Test Travis",
             "Test automatique réalisé par Travis !",
             [],
-            "28609177",
+            num_etudiant,
             password,
             data.file_signature
             )
