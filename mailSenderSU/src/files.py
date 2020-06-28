@@ -46,13 +46,13 @@ def create_file(file):
 
 class Files:
     """Gère les fichiers de données"""
-    def __init__(self, path, clear):
+    def __init__(self, path):
         self.path = path
         self.file_user = self.absolute_path("/data/user.txt")
         self.file_contacts = self.absolute_path("/data/contacts.txt")
         self.file_signature = self.absolute_path("/data/signature.html")
         self.file_history = self.absolute_path("/data/history.log")
-        self.create_files(clear)
+        self.create_files()
         self.list_email_user = list_file(self.file_user)
         self.list_email_send = list_file(self.file_contacts)
         self.signature = self.get_signature()
@@ -61,17 +61,20 @@ class Files:
         """Retourne le chemin absolu d'un fichier"""
         return "".join([self.path, file])
 
-    def create_files(self, clear):
-        """Crée les fichiers s'ils n'existent pas ou recrée ceux demandés"""
-        if (not os.path.exists(self.file_user)
-                or clear in ["all", "user"]):
+    def create_files(self):
+        """Crée les fichiers s'ils n'existent"""
+        if not os.path.exists(self.file_user):
             create_file(self.file_user)
-        if (not os.path.exists(self.file_contacts)
-                or clear in ["all", "contacts"]):
+        if not os.path.exists(self.file_contacts):
             create_file(self.file_contacts)
-        if (not os.path.exists(self.file_history)
-                or clear in ["all", "history"]):
+        if not os.path.exists(self.file_history):
             create_file(self.file_history)
+
+    def clear(self):
+        """Réinitialise les fichiers"""
+        create_file(self.file_user)
+        create_file(self.file_contacts)
+        create_file(self.file_history)
 
     def get_signature(self):
         """Récupère la signature"""

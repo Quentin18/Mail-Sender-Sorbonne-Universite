@@ -38,7 +38,7 @@ setuptools.setup(
     install_requires=['click'],
     entry_points='''
         [console_scripts]
-        mailSenderSU=mailSenderSU.__main__:main
+        mailSenderSU=mailSenderSU.cli:cli
     ''',
     python_requires='>=3.6',
 )

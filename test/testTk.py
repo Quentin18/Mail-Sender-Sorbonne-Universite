@@ -16,14 +16,14 @@ class Test(unittest.TestCase):
         LoginInterface(window, "su", path)
         window.destroy()
 
-        data = Files(path, "")
+        data = Files(path)
         window = tk.Tk()
         MailSenderInterface(window, "su", data, "", "")
         window.destroy()
 
     # def test_send(self):
     #     path = os.path.dirname(mailSenderSU.__file__)
-    #     data = Files(path, "")
+    #     data = Files(path)
     #     email_user = os.environ.get("MAIL_SU")
     #     email_send = os.environ.get("MAIL_TEST")
     #     num_etudiant = os.environ.get("NUM")
@@ -37,7 +37,7 @@ class Test(unittest.TestCase):
     #         [],
     #         num_etudiant,
     #         password,
-    #         data.file_signature
+    #         data.signature
     #         )
     #     self.assertTrue(ret[0])
 
