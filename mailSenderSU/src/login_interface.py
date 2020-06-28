@@ -6,6 +6,7 @@ Quentin Deschamps, 2020
 import smtplib
 import tkinter as tk
 import tkinter.ttk as ttk
+import logging
 from mailSenderSU.src.style import Style
 from mailSenderSU.src.message import show_login_error
 
@@ -13,15 +14,15 @@ from mailSenderSU.src.message import show_login_error
 class LoginInterface:
     """Interface de connexion au serveur"""
     def __init__(self, window, style, path):
-        self.login = False
-        self.num_etudiant, self.password = "", ""
+        self._login = False
+        self._num_etudiant, self._password = '', ''
 
         # Fenêtre
         self.login_window = window
-        self.login_window.title("Authentification")
+        self.login_window.title('Authentification')
         self.login_window.resizable(width=False, height=False)
         self.login_window.focus_set()
-        self.login_window.bind("<Return>", self.return_connect)
+        self.login_window.bind('<Return>', self.return_connect)
 
         # Style
         self.style = Style(self.login_window, style, path)
@@ -30,8 +31,8 @@ class LoginInterface:
         self.frame_left = ttk.Frame(self.login_window)
         self.frame_login = ttk.Frame(self.frame_left)
         self.label_num_etudiant = ttk.Label(self.frame_login,
-                                            text="Numéro étudiant")
-        self.label_password = ttk.Label(self.frame_login, text="Mot de passe")
+                                            text='Numéro étudiant')
+        self.label_password = ttk.Label(self.frame_login, text='Mot de passe')
         self.label_num_etudiant.grid(row=0, column=0, padx=5, pady=5)
         self.label_password.grid(row=1, column=0, pady=5)
 
@@ -41,7 +42,7 @@ class LoginInterface:
         self.entry_password.grid(row=1, column=1, padx=5, pady=5)
         self.frame_login.grid(row=0, column=0, padx=5, pady=5)
 
-        self.button_login = ttk.Button(self.frame_left, text="Connexion",
+        self.button_login = ttk.Button(self.frame_left, text='Connexion',
                                        command=self.connect)
         self.button_login.grid(row=1, column=0, padx=5, pady=5)
         self.frame_left.grid(row=0, column=0, padx=10, pady=10)
@@ -54,11 +55,37 @@ class LoginInterface:
         except Exception:
             pass
 
+        logging.info('Login window created')
+
+    @property
+    def login(self):
+        return self._login
+
+    @property
+    def num_etudiant(self):
+        return self._num_etudiant
+
+    @property
+    def password(self):
+        return self._password
+
+    @login.setter
+    def login(self, val):
+        self._login = val
+
+    @num_etudiant.setter
+    def num_etudiant(self, val):
+        self._num_etudiant = val
+
+    @password.setter
+    def password(self, val):
+        self._password = val
+
     def return_connect(self, event):
         """Connexion au serveur avec la touche Enter"""
         self.connect()
 
-    def connect(self, server="smtps.upmc.fr", port=587):
+    def connect(self, server='smtps.upmc.fr', port=587):
         """Vérifie la validité du numéro étudiant et du mot de passe"""
         num_etudiant = self.entry_num_etudiant.get()
         password = self.entry_password.get()
