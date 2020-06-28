@@ -45,7 +45,7 @@ def is_zip(path):
 
 def send_mail(email_user, email_send, email_cc, subject,
               body, list_attachment, num_etudiant, password,
-              signature, server="smtp.upmc.fr", port=587):
+              signature, server="smtps.upmc.fr", port=587):
     """Envoie le mail"""
     name = get_name_from_email(email_user)
     msg = MIMEMultipart()

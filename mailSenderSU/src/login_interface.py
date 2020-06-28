@@ -58,7 +58,7 @@ class LoginInterface:
         """Connexion au serveur avec la touche Enter"""
         self.connect()
 
-    def connect(self, server="smtp.upmc.fr", port=587):
+    def connect(self, server="smtps.upmc.fr", port=587):
         """Vérifie la validité du numéro étudiant et du mot de passe"""
         num_etudiant = self.entry_num_etudiant.get()
         password = self.entry_password.get()
