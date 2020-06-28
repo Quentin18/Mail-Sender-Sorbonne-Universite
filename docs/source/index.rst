@@ -1,5 +1,5 @@
 .. Mail Sender SU documentation master file, created by
-   sphinx-quickstart on Thu Apr  9 08:49:02 2020.
+   sphinx-quickstart on Sun Jun 28 18:00:14 2020.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
@@ -75,7 +75,7 @@ Modules
 
 Contact
 =======
-Pour reporter un problème ou faire des remarques, veuillez me contacter à l'adresse suivante ; quentin.deschamps.1@sorbonne-universite.fr.
+Pour reporter un problème ou faire des remarques, veuillez me contacter à l'adresse suivante ; quentin.deschamps@etu.sorbonne-universite.fr.
 
 Indices and tables
 ==================
