@@ -101,3 +101,4 @@ class LoginInterface:
             self.num_etudiant = num_etudiant
             self.password = password
             self.login_window.destroy()
+            logging.info('Login window closed')
