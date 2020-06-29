@@ -6,8 +6,6 @@
 [![Downloads](https://pepy.tech/badge/mailsendersu)](https://pepy.tech/project/mailsendersu)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**New release soon...**
-
 **Mail Sender SU** est une application de mail sender en Python pour les étudiants de Sorbonne-Université.
 Une CLI (*Command Line Interface*) associée à une GUI (*Graphical User Interface*) permettent d'envoyer
 des mails rapidement et facilement avec son adresse *sorbonne-universite*.
