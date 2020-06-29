@@ -122,7 +122,7 @@ class EmailConnection(object):
         """Envoie un email."""
         from_ = message.from_
         to = self.get_list(message.to)
-        cc = self.get_list(message.cc)
+        cc = self.get_list(message.cc) if message.cc != '' else []
         message = str(message)
         logging.info('Sending mail')
         return self.connection.sendmail(from_, to + cc, message)

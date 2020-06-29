@@ -131,7 +131,8 @@ class MailSenderInterface:
             server = EmailConnection(self.username, self.password)
             email = Email(from_, to, cc, subject, message, attachments,
                           signature_file.read())
-            if server.send(email) == {}:
+            ret = server.send(email)
+            if ret == {}:
                 Message.show_send()
                 if from_ not in self.user_list:
                     if Message.show_new_user(from_):
@@ -143,6 +144,7 @@ class MailSenderInterface:
                     if Message.show_new_contact(cc):
                         self.contacts_file.add(cc)
             else:
+                print(ret)
                 Message.show_send_error()
 
             server.close()

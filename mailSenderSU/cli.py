@@ -100,11 +100,11 @@ def send():
         server = EmailConnection(username, password)
         email = Email(from_, to, cc, subject, message, attachments,
                       signature_file.read())
-        print(email)
-        if server.send(email):
+        ret = server.send(email)
+        if ret == {}:
             click.echo('Successfully sent email')
         else:
-            click.echo('Error')
+            click.echo('Error: {}'.format(ret))
 
         server.close()
 
