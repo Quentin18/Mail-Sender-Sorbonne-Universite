@@ -22,8 +22,8 @@ class Test(unittest.TestCase):
     def test_send(self):
         from_ = os.environ.get('MAIL_SU')
         to = os.environ.get('MAIL_TEST')
-        username = os.environ.get('NUM')
-        password = os.environ.get('PWD')
+        username = os.environ.get('USERNAME')
+        password = os.environ.get('PASSWORD')
 
         directory = Path(os.path.dirname(os.path.abspath(__file__))).parent
         signature_file = File(
