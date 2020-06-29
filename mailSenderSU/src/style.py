@@ -1,20 +1,28 @@
 """
-Mail sender Sorbonne Université
-Style
-Quentin Deschamps, 2020
+The ``style`` module manages the style of the GUI.
+
+.. module:: style
+    :synopsis: Manage style.
+
+.. moduleauthor:: Quentin Deschamps <quentindeschamps18@gmail.com>
+
 """
+import os
+from pathlib import Path
 from tkinter import ttk
 
 
 class Style:
-    """Définit le style d'une fenêtre"""
-    def __init__(self, window, style, path):
+    """Manage the style of a window."""
+    def __init__(self, window, style):
+        """Init the style of a window."""
+        directory = Path(os.path.dirname(os.path.abspath(__file__))).parent
         if style == 'polytech':
-            self.image = "".join([path, "/image/polytech.gif"])
+            self.image = directory.joinpath('img', 'polytech.gif')
             bgcolor = '#009ee0'
             fg_button = '#004877'
         else:
-            self.image = "".join([path, "/image/su.gif"])
+            self.image = directory.joinpath('img', 'su.gif')
             bgcolor = '#263068'
             fg_button = '#e63228'
         theme = 'clam'

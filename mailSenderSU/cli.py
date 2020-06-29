@@ -1,12 +1,16 @@
 """
-Mail sender Sorbonne Université
-Quentin Deschamps, 2020
+.. module:: cli
+    :synopsis: Manage command line interface.
+
+.. moduleauthor:: Quentin Deschamps <quentindeschamps18@gmail.com>
+
 """
 from mailSenderSU.src.login_interface import LoginInterface
 from mailSenderSU.src.mail_interface import MailSenderInterface
-from mailSenderSU.src.files import Files, add_file, clear_file
-from mailSenderSU.src.send import send_mail
+from mailSenderSU.src.files import File
+from mailSenderSU.src.email_utils import Email, EmailConnection
 import os
+from pathlib import Path
 import click
 import tkinter as tk
 import logging
@@ -16,145 +20,161 @@ import getpass
 @click.group()
 @click.option('-v', '--verbosity', is_flag=True, help='Set the verbosity')
 def cli(verbosity):
-    """Mail Sender Sorbonne-University"""
+    """Mail Sender Sorbonne-University."""
     if verbosity:
         logging.basicConfig(format='%(levelname)s:%(message)s',
                             level=logging.INFO)
 
 
 @cli.command()
-@click.option('--style', help='Style: su or polytech', default='su')
+@click.option('--style', help='Style: su/polytech', default='su')
 def gui(style):
-    """Graphical user interface"""
-    path = os.path.dirname(os.path.abspath(__file__))
-    logging.info('Creating login window')
+    """Graphical user interface."""
     window = tk.Tk()
-    login_interface = LoginInterface(window, style, path)
+    login_interface = LoginInterface(window, style)
     window.mainloop()
-    logging.info('Closed login window')
     if login_interface.login:
-        data = Files(path)
-        logging.info('Creating mail sender window')
         window = tk.Tk()
-        MailSenderInterface(window, style, data,
-                            login_interface.num_etudiant,
-                            login_interface.password)
+        MailSenderInterface(
+            window, style,
+            login_interface.username,
+            login_interface.password)
         window.mainloop()
-        logging.info('Closed mail sender window')
+        logging.info('Mail sender window closed')
 
 
 @cli.command()
-@click.option('-n', help='Number of recipients', default=1)
-def send(n):
-    """Send mail"""
-    if n < 1:
-        raise ValueError('n must be >= 1')
-    path = os.path.dirname(os.path.abspath(__file__))
-    files = Files(path)
-    logging.info('Getting login')
-    login = click.prompt('Login')
+def send():
+    """Send mail."""
+    # Login
+    logging.info('Getting username')
+    username = click.prompt('Username')
     logging.info('Getting password')
-    pwd = getpass.getpass()
-    logging.info('Getting email user')
-    if files.list_email_user != []:
-        email_user = click.prompt('From', default=files.list_email_user[0])
+    password = getpass.getpass()
+    logging.info('Validating username and password')
+    if not EmailConnection.is_valid(username, password):
+        click.echo('Unable to connect to the server')
+        quit()
+
+    # Files
+    directory = Path(os.path.dirname(os.path.abspath(__file__)))
+    user_file = File(directory.joinpath('data', 'user.txt'))
+    user_list = user_file.get_list()
+    signature_file = File(directory.joinpath('data', 'signature.html'))
+
+    # From
+    logging.info('Getting from')
+    if user_list != []:
+        from_ = click.prompt('From', default=user_list[0])
     else:
-        email_user = click.prompt('From')
-    logging.info('Getting email send')
-    if n == 1:
-        email_send = click.prompt('To')
-    else:
-        email_send = ','.join([click.prompt('To ({}/{})'.format(i + 1, n))
-                               for i in range(n)])
-    logging.info('Getting email cc')
-    email_cc = click.prompt('Cc', default='')
+        from_ = click.prompt('From')
+
+    # To
+    logging.info('Getting to')
+    to = click.prompt('To')
+
+    # Cc
+    logging.info('Getting cc')
+    cc = click.prompt('Cc', default='')
+
+    # Subject
     logging.info('Getting subject')
     subject = click.prompt('Subject')
-    logging.info('Getting body')
-    body = click.prompt('Body', default='')
-    logging.info('Sending mail')
-    n_attachment = click.prompt('Number attachments', default=0)
-    logging.info('Getting attachments')
-    list_attachment = [click.prompt(
-                       'Attachment ({}/{})'.format(i + 1, n_attachment),
-                       type=click.Path(exists=True))
-                       for i in range(n_attachment)]
-    ret = send_mail(
-        email_user, email_send, email_cc, subject, body,
-        list_attachment, login, pwd, files.signature)
-    if ret[0]:
-        click.echo('Mail succesfully sent')
-    else:
-        click.echo('Error')
+
+    # Message
+    logging.info('Getting message')
+    message = click.prompt('Message', default='')
+
+    # Attachments
+    attachments = []
+    if click.confirm('Attach files?'):
+        logging.info('Getting attachments')
+        attachments.append(
+            click.prompt('Filename', type=click.Path(exists=True)))
+        while click.confirm('Add file?'):
+            attachments.append(
+                click.prompt('Filename', type=click.Path(exists=True)))
+
+    if click.confirm('Are you sure to send the mail?'):
+        # Send email
+        server = EmailConnection(username, password)
+        email = Email(from_, to, cc, subject, message, attachments,
+                      signature_file.read())
+        print(email)
+        if server.send(email):
+            click.echo('Successfully sent email')
+        else:
+            click.echo('Error')
+
+        server.close()
 
 
 @cli.command()
-@click.argument('email')
-def addUser(email):
-    """Add user email"""
-    path = os.path.dirname(os.path.abspath(__file__))
-    f = Files(path)
-    add_file(f.file_user, email)
+@click.argument('address')
+def addUser(address):
+    """Add user ADDRESS."""
+    directory = Path(os.path.dirname(os.path.abspath(__file__)))
+    user_file = File(directory.joinpath('data', 'user.txt'))
+    user_file.add(address)
 
 
 @cli.command()
-@click.argument('email')
-def addContact(email):
-    """Add contacts"""
-    path = os.path.dirname(os.path.abspath(__file__))
-    f = Files(path)
-    add_file(f.file_contacts, email)
+@click.argument('address')
+def addContact(address):
+    """Add contact ADDRESS."""
+    directory = Path(os.path.dirname(os.path.abspath(__file__)))
+    contacts_file = File(directory.joinpath('data', 'contacts.txt'))
+    contacts_file.add(address)
 
 
 @cli.command()
 def user():
-    """Edit user"""
+    """Edit user."""
     logging.info('Editing user')
-    path = os.path.dirname(os.path.abspath(__file__))
-    f = Files(path)
-    click.edit(filename=f.file_user)
+    directory = Path(os.path.dirname(os.path.abspath(__file__)))
+    click.edit(filename=directory.joinpath('data', 'user.txt'))
 
 
 @cli.command()
 def contacts():
-    """Edit contacts"""
+    """Edit contacts."""
     logging.info('Editing contacts')
-    path = os.path.dirname(os.path.abspath(__file__))
-    f = Files(path)
-    click.edit(filename=f.file_contacts)
+    directory = Path(os.path.dirname(os.path.abspath(__file__)))
+    click.edit(filename=directory.joinpath('data', 'contacts.txt'))
 
 
 @cli.command()
 def signature():
-    """Edit signature"""
+    """Edit signature."""
     logging.info('Editing signature')
-    path = os.path.dirname(os.path.abspath(__file__))
-    f = Files(path)
-    click.edit(filename=f.file_signature)
+    directory = Path(os.path.dirname(os.path.abspath(__file__)))
+    click.edit(filename=directory.joinpath('data', 'signature.html'))
 
 
 @cli.command()
 def delUser():
-    """Delete user addresses"""
+    """Delete user addresses."""
     if click.confirm('Do you want to delete user addresses?'):
-        path = os.path.dirname(os.path.abspath(__file__))
-        f = Files(path)
-        clear_file(f.file_user)
+        directory = Path(os.path.dirname(os.path.abspath(__file__)))
+        user_file = File(directory.joinpath('data', 'user.txt'))
+        user_file.clear()
 
 
 @cli.command()
 def delContacts():
-    """Delete contacts"""
+    """Delete contacts."""
     if click.confirm('Do you want to delete all contacts?'):
-        path = os.path.dirname(os.path.abspath(__file__))
-        f = Files(path)
-        clear_file(f.file_contacts)
+        directory = Path(os.path.dirname(os.path.abspath(__file__)))
+        contacts_file = File(directory.joinpath('data', 'contacts.txt'))
+        contacts_file.clear()
 
 
 @cli.command()
 def clear():
-    """Clear all data files"""
+    """Clear all data files."""
     if click.confirm('Do you want to clear data files?'):
-        path = os.path.dirname(os.path.abspath(__file__))
-        f = Files(path)
-        f.clear()
+        directory = Path(os.path.dirname(os.path.abspath(__file__)))
+        user_file = File(directory.joinpath('data', 'user.txt'))
+        user_file.clear()
+        contacts_file = File(directory.joinpath('data', 'contacts.txt'))
+        contacts_file.clear()

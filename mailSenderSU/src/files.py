@@ -1,103 +1,56 @@
 """
-Mail sender Sorbonne Université
-Gestion des fichiers
-Quentin Deschamps, 2020
+The ``files`` module manages files.
+The ``File`` class can edit a file.
+
+.. module:: attachments
+    :synopsis: Manage files.
+
+.. moduleauthor:: Quentin Deschamps <quentindeschamps18@gmail.com>
+
 """
-import mailSenderSU.src.message as Message
 import os
 
 
-def list_file(file):
-    """Retourne la liste des éléments d'un fichier"""
-    f = open(file, "r")
-    lines = f.readlines()
-    ret_list = [i.strip("\n") for i in lines]
-    f.close()
-    return ret_list
+class File:
+    """Manage a file."""
+    def create(self):
+        """Create an empty file."""
+        with open(self.filename, 'w'):
+            pass
 
+    def __init__(self, filename):
+        """Init a file."""
+        self._filename = filename
+        if not os.path.exists(filename):
+            self.create()
 
-def clear_file(file):
-    """Supprime les données d'un fichier"""
-    f = open(file, "r+")
-    f.truncate(0)
-    f.close()
+    @property
+    def filename(self):
+        """Get filename."""
+        return self._filename
 
+    def read(self):
+        """Read a file."""
+        f = open(self.filename, 'r')
+        ret = f.read()
+        f.close()
+        return ret
 
-def add_file(file, data):
-    """Ajoute une donnée à un fichier"""
-    f = open(file, "a")
-    f.write(f"{data}\n")
-    f.close()
+    def get_list(self):
+        """Return the list from a file."""
+        f = open(self.filename, 'r')
+        lines = f.readlines()
+        f.close()
+        return [i.strip() for i in lines]
 
-
-def write_file(file, liste_data):
-    """Ecrit un fichier à partir d'une liste"""
-    f = open(file, "w")
-    for data in liste_data:
-        f.write(f"{data}\n")
-    f.close()
-
-
-def create_file(file):
-    """Crée un fichier vide"""
-    with open(file, "w"):
-        pass
-
-
-class Files:
-    """Gère les fichiers de données"""
-    def __init__(self, path):
-        self.path = path
-        self.file_user = self.absolute_path("/data/user.txt")
-        self.file_contacts = self.absolute_path("/data/contacts.txt")
-        self.file_signature = self.absolute_path("/data/signature.html")
-        self.file_history = self.absolute_path("/data/history.log")
-        self.create_files()
-        self.list_email_user = list_file(self.file_user)
-        self.list_email_send = list_file(self.file_contacts)
-        self.signature = self.get_signature()
-
-    def absolute_path(self, file):
-        """Retourne le chemin absolu d'un fichier"""
-        return "".join([self.path, file])
-
-    def create_files(self):
-        """Crée les fichiers s'ils n'existent"""
-        if not os.path.exists(self.file_user):
-            create_file(self.file_user)
-        if not os.path.exists(self.file_contacts):
-            create_file(self.file_contacts)
-        if not os.path.exists(self.file_history):
-            create_file(self.file_history)
+    def add(self, data):
+        """Add data to a file."""
+        f = open(self.filename, 'a')
+        f.write(f'{data}\n')
+        f.close()
 
     def clear(self):
-        """Réinitialise les fichiers"""
-        create_file(self.file_user)
-        create_file(self.file_contacts)
-        create_file(self.file_history)
-
-    def get_signature(self):
-        """Récupère la signature"""
-        f = open(self.file_signature, "r")
-        signature = f.read()
+        """Delete all data from a file."""
+        f = open(self.filename, 'r+')
+        f.truncate(0)
         f.close()
-        return signature
-
-    def maj_files(self, email_user, email_send, email_cc, text):
-        """Met à jour les fichiers de données"""
-        add_file(self.file_history, text)
-        if email_user not in self.list_email_user:
-            if Message.show_new_user(email_user):
-                self.list_email_user.append(email_user)
-                self.list_email_user.sort()
-                write_file(self.file_user, self.list_email_user)
-        if email_send not in self.list_email_send:
-            if Message.show_new_contact(email_send):
-                self.list_email_send.append(email_send)
-                self.list_email_send.sort()
-                write_file(self.file_contacts, self.list_email_send)
-        if email_cc != "" and email_cc not in self.list_email_send:
-            if Message.show_new_contact(email_cc):
-                self.list_email_send.append(email_cc)
-                self.list_email_send.sort()
-                write_file(self.file_contacts, self.list_email_send)
