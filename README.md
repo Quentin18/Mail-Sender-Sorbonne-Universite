@@ -12,6 +12,8 @@
 Une CLI (*Command Line Interface*) associée à une GUI (*Graphical User Interface*) permettent d'envoyer
 des mails rapidement et facilement avec son adresse *sorbonne-universite*.
 
+![](https://github.com/Quentin18/Mail-Sender-Sorbonne-Universite/blob/master/img/gui.gif)
+
 ## Installation
 Pour installer l'application, entrez la commande suivante :
 
@@ -52,10 +54,6 @@ Pour utiliser la GUI, utilisez la commande :
 ```bash
 mailSenderSU gui
 ```
-
-![](https://github.com/Quentin18/Mail-Sender-Sorbonne-Universite/blob/master/docs/source/img/authentification.png)
-
-![](https://github.com/Quentin18/Mail-Sender-Sorbonne-Universite/blob/master/docs/source/img/mail_interface.png)
 
 ### CLI
 La CLI permet aussi d'envoyer un mail directement depuis le terminal avec la commande :
