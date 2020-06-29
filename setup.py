@@ -26,7 +26,8 @@ setuptools.setup(
     license='MIT',
     keywords='mail sender python sorbonne-university',
     project_urls={
-        'Documentation': '',
+        'Documentation':
+        'https://mail-sender-sorbonne-universite.readthedocs.io/fr/latest/',
         'Travis':
         'https://travis-ci.org/Quentin18/Mail-Sender-Sorbonne-Universite/',
         'Source Code':

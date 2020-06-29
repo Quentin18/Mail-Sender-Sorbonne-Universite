@@ -22,7 +22,7 @@ Liens
 =====
 * GitHub : https://github.com/Quentin18/Mail-Sender-Sorbonne-Universite/
 * PyPI : https://pypi.org/project/mailSenderSU/
-* Documentation :
+* Documentation : https://mail-sender-sorbonne-universite.readthedocs.io/fr/latest/
 * Travis : https://travis-ci.org/github/Quentin18/Mail-Sender-Sorbonne-Universite/
 
 Auteur

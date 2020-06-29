@@ -1,4 +1,5 @@
 # Mail Sender Sorbonne Université
+[![Documentation Status](https://readthedocs.org/projects/mail-sender-sorbonne-universite/badge/?version=latest)](https://mail-sender-sorbonne-universite.readthedocs.io/fr/latest/?badge=latest)
 [![Build Status](https://travis-ci.org/Quentin18/Mail-Sender-Sorbonne-Universite.svg?branch=master)](https://travis-ci.org/Quentin18/Mail-Sender-Sorbonne-Universite)
 ![PyPI](https://img.shields.io/pypi/v/mailSenderSU)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/mailSenderSU)
@@ -19,7 +20,7 @@ pip3 install mailSenderSU
 ```
 
 ## Utilisation
-Consultez la documentation complète [ici]().
+Consultez la documentation complète [ici](https://mail-sender-sorbonne-universite.readthedocs.io/fr/latest/).
 
 La CLI de *Mail Sender SU* dispose des commandes suivantes :
 
@@ -65,7 +66,7 @@ mailSenderSU send
 ## Liens
 * GitHub : https://github.com/Quentin18/Mail-Sender-Sorbonne-Universite/
 * PyPI : https://pypi.org/project/mailSenderSU/
-* Documentation :
+* Documentation : https://mail-sender-sorbonne-universite.readthedocs.io/fr/latest/
 * Travis : https://travis-ci.org/github/Quentin18/Mail-Sender-Sorbonne-Universite/
 
 ## Auteur
@@ -73,3 +74,5 @@ Quentin Deschamps: quentin.deschamps@etu.sorbonne-universite.fr
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
+
+![](https://github.com/Quentin18/Mail-Sender-Sorbonne-Universite/blob/master/docs/source/img/polytech_su.png)
