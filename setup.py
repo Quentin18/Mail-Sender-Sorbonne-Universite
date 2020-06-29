@@ -5,7 +5,7 @@ with open('README.md', 'r') as fh:
 
 setuptools.setup(
     name='mailSenderSU',
-    version='0.1.0',
+    version='1.0.0',
     description='Mail sender for Sorbonne-University',
     long_description=long_description,
     long_description_content_type='text/markdown',

@@ -1,4 +1,4 @@
-# Mail Sender Sorbonne Université
+# Mail Sender Sorbonne-Université
 [![Documentation Status](https://readthedocs.org/projects/mail-sender-sorbonne-universite/badge/?version=latest)](https://mail-sender-sorbonne-universite.readthedocs.io/fr/latest/?badge=latest)
 [![Build Status](https://travis-ci.org/Quentin18/Mail-Sender-Sorbonne-Universite.svg?branch=master)](https://travis-ci.org/Quentin18/Mail-Sender-Sorbonne-Universite)
 ![PyPI](https://img.shields.io/pypi/v/mailSenderSU)

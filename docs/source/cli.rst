@@ -69,7 +69,7 @@ Vous pouvez gérer ces adresses avec les commandes suivantes :
 
     mailSenderSU clear [OPTIONS]
 
-.. note:: Évitez de laisser une ligne vierge à la fin des fichiers d'adresses. Un groupe de plusieurs adresses peut être inscrite dans les contacts (sur une ligne, séparer par des virgules).
+.. note:: Un groupe de plusieurs adresses peut être inscrit dans les contacts (sur une ligne, séparer les adresses par des virgules).
 
 Gérer la signature
 ------------------
