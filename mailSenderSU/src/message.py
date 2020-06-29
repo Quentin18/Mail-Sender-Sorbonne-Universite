@@ -2,9 +2,6 @@
 The ``message`` module manages the messages of the GUI.
 It uses the ``tkinter.messagebox`` module.
 
-.. module:: message
-    :synopsis: Manage messages.
-
 .. moduleauthor:: Quentin Deschamps <quentindeschamps18@gmail.com>
 
 """

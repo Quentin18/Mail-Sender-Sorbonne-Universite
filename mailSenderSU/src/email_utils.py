@@ -2,9 +2,6 @@
 The ``email_utils`` module is used to create and send emails.
 It uses ``smtplib`` to send an email.
 
-.. module:: email_utils
-    :synopsis: Create and send emails.
-
 .. moduleauthor:: Quentin Deschamps <quentindeschamps18@gmail.com>
 
 """
@@ -119,7 +116,7 @@ class EmailConnection(object):
         return [a.strip() for a in addresses]
 
     def send(self, message):
-        """Envoie un email."""
+        """Send an email."""
         from_ = message.from_
         to = self.get_list(message.to)
         cc = self.get_list(message.cc) if message.cc != '' else []
@@ -128,6 +125,6 @@ class EmailConnection(object):
         return self.connection.sendmail(from_, to + cc, message)
 
     def close(self):
-        """Ferme la connection."""
+        """Close connection."""
         self.connection.close()
         logging.info('Connection closed')

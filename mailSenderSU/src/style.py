@@ -1,9 +1,6 @@
 """
 The ``style`` module manages the style of the GUI.
 
-.. module:: style
-    :synopsis: Manage style.
-
 .. moduleauthor:: Quentin Deschamps <quentindeschamps18@gmail.com>
 
 """

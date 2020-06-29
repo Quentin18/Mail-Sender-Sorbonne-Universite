@@ -3,9 +3,6 @@ The ``attachments`` module manages attachments.
 It uses the ``askopenfilenames`` function from the
 ``tkinter.filedialog`` module.
 
-.. module:: attachments
-    :synopsis: Manage attachments.
-
 .. moduleauthor:: Quentin Deschamps <quentindeschamps18@gmail.com>
 
 """

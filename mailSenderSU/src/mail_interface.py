@@ -1,9 +1,6 @@
 """
 The ``mail_interface`` module creates the mail sender interface of the GUI.
 
-.. module:: mail_interface
-    :synopsis: Create mail sender interface.
-
 .. moduleauthor:: Quentin Deschamps <quentindeschamps18@gmail.com>
 
 """

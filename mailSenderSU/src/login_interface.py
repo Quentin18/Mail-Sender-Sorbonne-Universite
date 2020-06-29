@@ -1,9 +1,6 @@
 """
 The ``login_interface`` module creates the login interface of the GUI.
 
-.. module:: login_interface
-    :synopsis: Create login interface.
-
 .. moduleauthor:: Quentin Deschamps <quentindeschamps18@gmail.com>
 
 """

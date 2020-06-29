@@ -2,9 +2,6 @@
 The ``files`` module manages files.
 The ``File`` class can edit a file.
 
-.. module:: attachments
-    :synopsis: Manage files.
-
 .. moduleauthor:: Quentin Deschamps <quentindeschamps18@gmail.com>
 
 """
