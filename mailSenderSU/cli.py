@@ -132,7 +132,7 @@ def user():
     """Edit user."""
     logging.info('Editing user')
     directory = Path(os.path.dirname(os.path.abspath(__file__)))
-    click.edit(filename=directory.joinpath('data', 'user.txt'))
+    click.edit(filename=str(directory.joinpath('data', 'user.txt')))
 
 
 @cli.command()
@@ -140,7 +140,7 @@ def contacts():
     """Edit contacts."""
     logging.info('Editing contacts')
     directory = Path(os.path.dirname(os.path.abspath(__file__)))
-    click.edit(filename=directory.joinpath('data', 'contacts.txt'))
+    click.edit(filename=str(directory.joinpath('data', 'contacts.txt')))
 
 
 @cli.command()
@@ -148,7 +148,7 @@ def signature():
     """Edit signature."""
     logging.info('Editing signature')
     directory = Path(os.path.dirname(os.path.abspath(__file__)))
-    click.edit(filename=directory.joinpath('data', 'signature.html'))
+    click.edit(filename=str(directory.joinpath('data', 'signature.html')))
 
 
 @cli.command()
