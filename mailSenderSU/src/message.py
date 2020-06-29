@@ -31,9 +31,9 @@ def show_to_miss():
     showerror("Pas de destinataires", "Merci d'indiquer les destinataires.")
 
 
-def show_address_not_valid(mail):
+def show_address_not_valid(address):
     """'Not valid address' message."""
-    showerror("Email non valide", f"L'adresse {mail} n'est pas valide.")
+    showerror("Email non valide", f"L'adresse {address} n'est pas valide.")
 
 
 def show_subject_miss():
@@ -41,16 +41,16 @@ def show_subject_miss():
     showerror("Pas d'objet", "Vous avez oublié d'indiquer l'objet !")
 
 
-def show_new_user(mail):
+def show_new_user(address):
     """New user message."""
     return askyesno("Nouvelle adresse",
-                    f"Ajouter {mail} à vos adresses ?")
+                    f"Ajouter {address} à vos adresses ?")
 
 
-def show_new_contact(mail):
+def show_new_contact(address):
     """New contact message."""
     return askyesno("Nouveau contact",
-                    f"Ajouter {mail} à vos contacts ?")
+                    f"Ajouter {address} à vos contacts ?")
 
 
 def show_send_error():
