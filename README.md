@@ -8,7 +8,7 @@
 **New release soon...**
 
 **Mail Sender SU** est une application de mail sender en Python pour les étudiants de Sorbonne-Université.
-Une CLI (Command Line Interface) associée à une GUI (Graphical User Interface) permettent d'envoyer
+Une CLI (*Command Line Interface*) associée à une GUI (*Graphical User Interface*) permettent d'envoyer
 des mails rapidement et facilement avec son adresse *sorbonne-universite*.
 
 ## Installation
