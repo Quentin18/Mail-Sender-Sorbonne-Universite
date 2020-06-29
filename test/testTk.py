@@ -1,45 +1,45 @@
 import os
+from pathlib import Path
 import unittest
 import tkinter as tk
-import mailSenderSU
 from mailSenderSU.src.login_interface import LoginInterface
 from mailSenderSU.src.mail_interface import MailSenderInterface
-from mailSenderSU.src.files import Files
-# from mailSenderSU.src.send import send_mail
+from mailSenderSU.src.files import File
+from mailSenderSU.src.email_utils import EmailConnection, Email
 
 
 class Test(unittest.TestCase):
     """Tests de l'interface"""
     def test_app(self):
-        path = os.path.dirname(mailSenderSU.__file__)
         window = tk.Tk()
-        LoginInterface(window, "su", path)
+        LoginInterface(window, 'su')
         window.destroy()
 
-        data = Files(path)
         window = tk.Tk()
-        MailSenderInterface(window, "su", data, "", "")
+        MailSenderInterface(window, 'su', '', '')
         window.destroy()
 
-    # def test_send(self):
-    #     path = os.path.dirname(mailSenderSU.__file__)
-    #     data = Files(path)
-    #     email_user = os.environ.get("MAIL_SU")
-    #     email_send = os.environ.get("MAIL_TEST")
-    #     num_etudiant = os.environ.get("NUM")
-    #     password = os.environ.get("PWD")
-    #     ret = send_mail(
-    #         email_user,
-    #         email_send,
-    #         "",
-    #         "Test Travis",
-    #         "Test automatique réalisé par Travis !",
-    #         [],
-    #         num_etudiant,
-    #         password,
-    #         data.signature
-    #         )
-    #     self.assertTrue(ret[0])
+    def test_send(self):
+        from_ = os.environ.get('MAIL_SU')
+        to = os.environ.get('MAIL_TEST')
+        username = os.environ.get('NUM')
+        password = os.environ.get('PWD')
+
+        directory = Path(os.path.dirname(os.path.abspath(__file__))).parent
+        signature_file = File(
+            directory.joinpath('mailSenderSU', 'data', 'signature.html'))
+
+        server = EmailConnection(username, password)
+        email = Email(
+            from_, to, '',
+            'Test Travis',
+            'Test automatique réalisé par Travis',
+            [],
+            signature_file.read()
+        )
+        ret = server.send(email)
+        server.close()
+        self.assertTrue(ret == {})
 
 
 if __name__ == "__main__":
